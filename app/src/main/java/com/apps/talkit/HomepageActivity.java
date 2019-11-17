@@ -9,13 +9,13 @@ import com.apps.talkit.classes.UserInfo;
 public class HomepageActivity extends BaseActivity {
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
-    private UserInfo myuser;
+    private UserInfo myUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
-        myuser = (UserInfo) getIntent().getSerializableExtra("name");
-        setTitle(myuser.getNickname());
+        myUser = (UserInfo) getIntent().getSerializableExtra("name");
+        setTitle(myUser.getNickname());
     }
     @Override
     public void onBackPressed() {
@@ -25,7 +25,7 @@ public class HomepageActivity extends BaseActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         } else
-            Toast.makeText(getBaseContext(), "Press back again in order to exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getTalkitContext(), "Press back again in order to exit", Toast.LENGTH_SHORT).show();
 
         mBackPressed = System.currentTimeMillis();
     }
