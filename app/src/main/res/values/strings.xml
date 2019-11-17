@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TalkIt</string>
+    <string name="continue_label">Continue</string>
+    <string name="empty"> </string>
+    <string name="nickname">Enter Nickname </string>
+
 </resources>
