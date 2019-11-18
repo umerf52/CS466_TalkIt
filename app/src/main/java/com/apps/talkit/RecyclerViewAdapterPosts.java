@@ -51,7 +51,7 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
 
         public postsViewHolder(View itemView) {
             super(itemView);
-            post = itemView.findViewById(R.id.post);
+            post = itemView.findViewById(R.id.supporting_text);
             itemView.setOnClickListener(this);
         }
 
