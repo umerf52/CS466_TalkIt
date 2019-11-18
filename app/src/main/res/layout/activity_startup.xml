@@ -7,54 +7,115 @@
     android:layout_height="match_parent"
     tools:context=".StartupActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nickname"
-        android:textAllCaps="false"
-        android:textColor="@color/colorAccent"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/nameLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.867" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nameLayout"
-        android:layout_width="329dp"
-        android:layout_height="68dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="148dp"
-        android:hint="@string/empty"
-        android:inputType="text"
-        android:orientation="horizontal"
-        android:textColor="@color/colorPrimaryDark"
-        app:errorEnabled="true"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="true"
-        app:layout_constraintBottom_toTopOf="@+id/continueButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nickname"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
+        <TextView
+            android:id="@+id/nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nickname"
+            android:textAllCaps="false"
+            android:textColor="@color/Sec"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="240dp"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nameLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="@string/empty"
             android:inputType="text"
-            android:padding="8dp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical"
+            android:textColor="@color/Black"
+            app:errorEnabled="false"
+            app:hintAnimationEnabled="false"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/nick"
+            app:hintEnabled="true">
 
-    <Button
-        android:id="@+id/continueButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="156dp"
-        android:text="@string/continue_label"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nickname"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:inputType="text"
+                android:background="@drawable/sign"
+                android:padding="8dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/continueButton"
+            android:layout_below="@id/nameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/White"
+            android:background="@drawable/button"
+            android:textSize="15dp"
+            android:text="@string/continue_label"/>
+        <RelativeLayout
+            android:id="@+id/l"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/continueButton"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:id="@+id/v3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:text="OR"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:textColor="@color/Sec"/>
+            <View
+                android:id="@+id/v"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/v3"
+                android:background="@color/Sec"/>
+            <View
+                android:id="@+id/v1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/v3"
+                android:background="@color/Sec"/>
+        </RelativeLayout>
+        <ImageButton
+            android:layout_below="@id/l"
+            android:id="@+id/login"
+            android:layout_width="400dp"
+            android:layout_height="55dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/White"
+            android:background="@drawable/fblogin"
+            android:text="@string/continue_label"/>
+        <ImageButton
+            android:layout_below="@id/login"
+            android:layout_width="350dp"
+            android:layout_height="55dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/White"
+            android:background="@drawable/glog"
+            android:text="@string/continue_label"/>
+        <ImageButton
+            android:layout_below="@id/login"
+            android:layout_width="350dp"
+            android:layout_height="55dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/White"
+            android:background="@drawable/sign"
+            android:text="@string/continue_label"/>
+
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
