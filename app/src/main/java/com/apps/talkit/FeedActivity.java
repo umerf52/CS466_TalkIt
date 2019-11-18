@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.apps.talkit.classes.PostInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -17,13 +18,12 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class FeedActivity extends BaseActivity {
 
     private final String TAG = "FeedActivity.java";
 
-    private ArrayList<String> postsList = new ArrayList<>();
+    private ArrayList<PostInfo> postsList = new ArrayList<>();
     private RecyclerView.Adapter mAdapter;
     private FirebaseFirestore db;
 
@@ -50,11 +50,8 @@ public class FeedActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Map<String, Object> temp = document.getData();
-                                for (Map.Entry<String, Object> me : temp.entrySet()) {
-//                                    Log.d(TAG, document.getId() + " => " + me.getValue().toString());
-                                    postsList.add(me.getValue().toString());
-                                }
+                                PostInfo p = document.toObject(PostInfo.class);
+                                postsList.add(p);
                             }
                             mAdapter.notifyDataSetChanged();
                         } else {
@@ -70,7 +67,7 @@ public class FeedActivity extends BaseActivity {
         ((RecyclerViewAdapterPosts) mAdapter).setOnItemClickListener(new RecyclerViewAdapterPosts.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                String x = postsList.get(position);
+                String x = postsList.get(position).getPostText();
                 Toast.makeText(getTalkitContext(), x, Toast.LENGTH_LONG).show();
             }
         });

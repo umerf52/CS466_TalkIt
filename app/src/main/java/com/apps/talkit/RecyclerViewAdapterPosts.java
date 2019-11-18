@@ -9,14 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.apps.talkit.classes.PostInfo;
+
 import java.util.ArrayList;
 
 class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterPosts.postsViewHolder> {
     private static RecyclerViewAdapterPosts.MyClickListener myClickListener;
     private Context mCtx;
-    private ArrayList<String> posts;
+    private ArrayList<PostInfo> posts;
 
-    public RecyclerViewAdapterPosts(Context context, ArrayList<String> items) {
+    public RecyclerViewAdapterPosts(Context context, ArrayList<PostInfo> items) {
         mCtx = context;
         posts = items;
     }
@@ -39,7 +41,8 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
 
     @Override
     public void onBindViewHolder(@NonNull postsViewHolder holder, int position) {
-        holder.post.setText(posts.get(position));
+        holder.post.setText(posts.get(position).getPostText());
+        holder.title.setText(posts.get(position).getPostTitle());
     }
 
     public interface MyClickListener {
@@ -48,10 +51,12 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
 
     public static class postsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView post;
+        TextView title;
 
         public postsViewHolder(View itemView) {
             super(itemView);
             post = itemView.findViewById(R.id.supporting_text);
+            title = itemView.findViewById(R.id.primary_text);
             itemView.setOnClickListener(this);
         }
 
