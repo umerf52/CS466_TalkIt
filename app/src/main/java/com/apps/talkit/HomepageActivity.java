@@ -41,7 +41,6 @@ public class HomepageActivity extends BaseActivity {
         RecyclerView recyclerViewC = findViewById(R.id.chats);
         recyclerViewN.setHasFixedSize(true);
         recyclerViewC.setHasFixedSize(true);
-
         RecyclerView.LayoutManager mLayoutManagerN = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewN.setLayoutManager(mLayoutManagerN);
         mAdapterN = new RecyclerViewAdapterNotifications(this, notificationsList);
@@ -56,6 +55,7 @@ public class HomepageActivity extends BaseActivity {
         spaceNavigationView.initWithSaveInstanceState(savedInstanceState);
         spaceNavigationView.addSpaceItem(new SpaceItem("Feed",R.drawable.feed));
         spaceNavigationView.addSpaceItem(new SpaceItem("Therapy", R.drawable.therapy));
+        spaceNavigationView.setCentreButtonIcon(R.drawable.feed);
         spaceNavigationView.changeCurrentItem(-1);
 
         spaceNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
