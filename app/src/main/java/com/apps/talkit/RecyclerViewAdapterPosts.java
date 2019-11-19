@@ -43,6 +43,8 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
     public void onBindViewHolder(@NonNull postsViewHolder holder, int position) {
         holder.post.setText(posts.get(position).getPostText());
         holder.title.setText(posts.get(position).getPostTitle());
+//        int temp = posts.get(position).getNumberOfUpvotes();
+        holder.numUpvotes.setText(String.valueOf(posts.get(position).getNumberOfUpvotes()));
     }
 
     public interface MyClickListener {
@@ -52,11 +54,13 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
     public static class postsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView post;
         TextView title;
+        TextView numUpvotes;
 
         public postsViewHolder(View itemView) {
             super(itemView);
             post = itemView.findViewById(R.id.supporting_text);
             title = itemView.findViewById(R.id.primary_text);
+            numUpvotes = itemView.findViewById(R.id.num_upvotes);
             itemView.setOnClickListener(this);
         }
 

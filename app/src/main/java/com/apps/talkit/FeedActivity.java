@@ -1,6 +1,5 @@
 package com.apps.talkit;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -76,6 +75,7 @@ public class FeedActivity extends BaseActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            postsList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 PostInfo p = document.toObject(PostInfo.class);
                                 postsList.add(p);
@@ -94,10 +94,9 @@ public class FeedActivity extends BaseActivity {
         ((RecyclerViewAdapterPosts) mAdapter).setOnItemClickListener(new RecyclerViewAdapterPosts.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                String x = postsList.get(position).getPostText();
+                String x = postsList.get(position).getPostID();
                 Toast.makeText(getTalkitContext(), x, Toast.LENGTH_LONG).show();
             }
         });
     }
-
 }
