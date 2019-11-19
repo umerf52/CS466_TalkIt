@@ -36,4 +36,24 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notifications" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/view_bottom_margin"/>
+
+        <com.luseen.spacenavigation.SpaceNavigationView
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:space_background_color="@color/colorPrimary"
+            app:active_item_color="@color/White"
+            app:inactive_item_color="@color/Sec"
+            app:centre_button_color="@color/Sec"
+            android:layout_gravity="bottom"/>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
