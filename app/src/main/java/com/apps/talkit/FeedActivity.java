@@ -36,8 +36,8 @@ public class FeedActivity extends BaseActivity {
         setContentView(R.layout.activity_feed);
         setTitle("Feed");
 
-        RecyclerView recyclerView = findViewById(R.id.posts);
 //        recyclerView.setHasFixedSize(true);
+        RecyclerView recyclerView = findViewById(R.id.posts);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -67,25 +67,6 @@ public class FeedActivity extends BaseActivity {
             }
         });
 
-        FirebaseApp.initializeApp((this));
-        db = FirebaseFirestore.getInstance();
-        db.collection("posts")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            postsList.clear();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                PostInfo p = document.toObject(PostInfo.class);
-                                postsList.add(p);
-                            }
-                            mAdapter.notifyDataSetChanged();
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
     }
 
     @Override

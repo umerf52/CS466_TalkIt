@@ -34,7 +34,7 @@ public class StartupActivity extends AppCompatActivity {
                 String name = nickname.getText().toString();
                 if (!name.isEmpty()){
                     UserInfo myUser = new UserInfo(nickname.getText().toString());
-                    Intent myIntent = new Intent(StartupActivity.this, HomepageActivity.class);
+                    Intent myIntent = new Intent(StartupActivity.this, HomeActivity.class);
                     myIntent.putExtra("name", myUser);
                     StartupActivity.this.startActivity(myIntent);
                 }
