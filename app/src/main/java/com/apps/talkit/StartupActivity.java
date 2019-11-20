@@ -35,6 +35,7 @@ public class StartupActivity extends AppCompatActivity {
                 if (!name.isEmpty()){
                     UserInfo myUser = new UserInfo(nickname.getText().toString());
                     Intent myIntent = new Intent(StartupActivity.this, HomeActivity.class);
+                    myIntent.putExtra("theme",0);
                     myIntent.putExtra("name", myUser);
                     StartupActivity.this.startActivity(myIntent);
                 }

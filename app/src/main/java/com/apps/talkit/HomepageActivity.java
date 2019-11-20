@@ -68,8 +68,8 @@ public class HomepageActivity extends BaseActivity {
             public void onItemClick(int itemIndex, String itemName) {
                 Toast.makeText(getTalkitContext(), itemIndex + " " + itemName, Toast.LENGTH_SHORT).show();
                 if(itemIndex==0){
-                    Intent myIntent = new Intent(HomepageActivity.this, FeedActivity.class);
-                    HomepageActivity.this.startActivity(myIntent);
+//                    Intent myIntent = new Intent(HomepageActivity.this, FeedActivity.class);
+//                    HomepageActivity.this.startActivity(myIntent);
                 }
             }
 

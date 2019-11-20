@@ -33,6 +33,14 @@
             android:layout_below="@+id/nickname"
             android:layout_marginTop="10dp"/>
 
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="4dp"
+            android:text="Button" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/notifications"
             android:layout_width="match_parent"
@@ -69,6 +77,7 @@
             android:clipToPadding="false"
             android:scrollbars="none"
             android:layout_below="@+id/nickname3"/>
+
     </RelativeLayout>
 
 </FrameLayout>

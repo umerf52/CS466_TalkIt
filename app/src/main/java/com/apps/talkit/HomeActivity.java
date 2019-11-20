@@ -1,7 +1,6 @@
 package com.apps.talkit;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -34,15 +33,23 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int theme = getIntent().getIntExtra("theme",0);
+        if(theme==1){
+            setTheme(R.style.AppThemeTwo);
+        }
+        else if(theme==2){
+            setTheme(R.style.AppThemeThree);
+        }
         UserInfo userInfo = (UserInfo) getIntent().getSerializableExtra("name");
         setContentView(R.layout.activity_home);
         setTitle("My Activity");
+
         Bundle bundle = new Bundle();
         bundle.putSerializable("username", userInfo);
+        bundle.putInt("theme",theme);
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setArguments(bundle);
         loadFragment(homeFragment);
-
         spaceNavigationView = (SpaceNavigationView) findViewById(R.id.space);
         spaceNavigationView.initWithSaveInstanceState(savedInstanceState);
         spaceNavigationView.addSpaceItem(new SpaceItem("Feed",R.drawable.feed));
@@ -52,14 +59,12 @@ public class HomeActivity extends BaseActivity {
         spaceNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
             public void onCentreButtonClick() {
-                Toast.makeText(getTalkitContext(),"onCentreButtonClick", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getTalkitContext(),"New Post", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onItemClick(int itemIndex, String itemName) {
-//                spaceNavigationView.changeCurrentItem(0);
                 Fragment fragment = null;
-                Toast.makeText(getTalkitContext(), itemIndex + " " + itemName, Toast.LENGTH_SHORT).show();
                 if(itemIndex==0){
                     setTitle("Feed");
                     Bundle bundle = new Bundle();
@@ -117,6 +122,7 @@ public class HomeActivity extends BaseActivity {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
             startActivity(intent);
         } else
             Toast.makeText(getTalkitContext(), "Press back again in order to exit", Toast.LENGTH_SHORT).show();
