@@ -49,9 +49,6 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
         }
         holder.numUpvotes.setText(String.valueOf(posts.get(position).getNumberOfUpvotes()));
         holder.ib.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                holder.ib.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         posts.get(position).setNumberOfUpvotes(posts.get(position).getNumberOfUpvotes()+1);
@@ -59,8 +56,6 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
                         holder.ib.setImageResource(R.drawable.arrow_upvoted);
                     }
                 });
-            }
-        });
     }
 
     public interface MyClickListener {
