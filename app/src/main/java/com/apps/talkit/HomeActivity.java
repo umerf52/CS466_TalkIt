@@ -118,6 +118,7 @@ public class HomeActivity extends BaseActivity {
                 homeFragment.setArguments(bundle);
                 loadFragment(homeFragment);
                 setTitle("My Activity");
+                spaceNavigationView.changeCurrentItem(-1);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             default:
                 return super.onOptionsItemSelected(item);
