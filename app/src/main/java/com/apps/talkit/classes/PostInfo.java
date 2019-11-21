@@ -9,7 +9,7 @@ public class PostInfo {
     PostInfo() {
     }
 
-    PostInfo(String id, int num, String txt, String title) {
+    public PostInfo(String id, int num, String txt, String title) {
         postID = id;
         numberOfUpvotes = num;
         postText = txt;
