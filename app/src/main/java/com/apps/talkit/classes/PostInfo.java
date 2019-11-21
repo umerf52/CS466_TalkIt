@@ -5,6 +5,7 @@ public class PostInfo {
     private String postID;
     private int numberOfUpvotes;
     private String postTitle;
+    private boolean upvoted;
 
     PostInfo() {
     }
@@ -14,6 +15,7 @@ public class PostInfo {
         numberOfUpvotes = num;
         postText = txt;
         postTitle = title;
+        upvoted = false;
     }
 
     public int getNumberOfUpvotes() {
@@ -46,5 +48,13 @@ public class PostInfo {
 
     public void setPostTitle(String postTitle) {
         this.postTitle = postTitle;
+    }
+
+    public boolean getUpvoted() {
+        return upvoted;
+    }
+
+    public void setUpvoted(boolean upvoted) {
+        this.upvoted = upvoted;
     }
 }

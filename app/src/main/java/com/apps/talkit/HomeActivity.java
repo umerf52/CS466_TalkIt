@@ -3,6 +3,7 @@ package com.apps.talkit;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ public class HomeActivity extends BaseActivity {
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
     private FirebaseFirestore db;
+//    private SupportActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class HomeActivity extends BaseActivity {
             public void onItemClick(int itemIndex, String itemName) {
                 Fragment fragment = null;
                 if(itemIndex==0){
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     setTitle("Feed");
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("posts", postsList);
@@ -77,6 +80,7 @@ public class HomeActivity extends BaseActivity {
                     Toast.makeText(getTalkitContext(), "Coming Soon!", Toast.LENGTH_LONG).show();
                 }
             }
+
 
             @Override
             public void onItemReselected(int itemIndex, String itemName) {
@@ -103,6 +107,21 @@ public class HomeActivity extends BaseActivity {
                         }
                     }
                 });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Bundle bundle = new Bundle();
+                HomeFragment homeFragment = new HomeFragment();
+                homeFragment.setArguments(bundle);
+                loadFragment(homeFragment);
+                setTitle("My Activity");
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private boolean loadFragment(Fragment fragment) {

@@ -54,6 +54,7 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
                 holder.ib.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        posts.get(position).setUpvoted(true);
                         posts.get(position).setNumberOfUpvotes(posts.get(position).getNumberOfUpvotes()+1);
                         holder.numUpvotes.setText(String.valueOf(posts.get(position).getNumberOfUpvotes()));
                         holder.ib.setImageResource(R.drawable.arrow_upvoted);
