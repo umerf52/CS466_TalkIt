@@ -48,6 +48,10 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
             holder.title.setTextSize(15);
         }
         holder.numUpvotes.setText(String.valueOf(posts.get(position).getNumberOfUpvotes()));
+        if(posts.get(position).getUpvoted()){
+            holder.ib.setImageResource(R.drawable.arrow_upvoted);
+        }
+
         holder.ib.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
