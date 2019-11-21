@@ -51,6 +51,14 @@
             android:orientation="horizontal"
             android:layout_below="@+id/supporting_text">
 
+            <View
+                android:id="@+id/v"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@+id/v3"
+                android:background="@color/Hel"/>
+
             <ImageButton
                 android:id="@+id/action_button_1"
                 android:layout_width="48dp"
