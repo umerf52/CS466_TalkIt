@@ -1,10 +1,10 @@
 package com.apps.talkit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -33,10 +33,10 @@ public class FeedFragment extends Fragment {
         ((RecyclerViewAdapterPosts) mAdapter).setOnItemClickListener(new RecyclerViewAdapterPosts.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                boolean x = postsList.get(position).getUpvoted();
-                String temp = "false";
-                if (x) temp = "true";
-                Toast.makeText(getContext(), temp, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity().getBaseContext(), ExpandedPostActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("post", postsList.get(position));
+                startActivity(intent);
             }
         });
 //        FirebaseApp.initializeApp((getContext()));
