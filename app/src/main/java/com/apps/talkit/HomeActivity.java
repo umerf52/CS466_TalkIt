@@ -30,7 +30,6 @@ public class HomeActivity extends BaseActivity {
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
     private FirebaseFirestore db;
-//    private SupportActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +56,12 @@ public class HomeActivity extends BaseActivity {
         spaceNavigationView.addSpaceItem(new SpaceItem("Feed",R.drawable.feed));
         spaceNavigationView.addSpaceItem(new SpaceItem("Therapy", R.drawable.therapy));
         spaceNavigationView.changeCurrentItem(-1);
+        if(theme==1){
+            spaceNavigationView.setSpaceBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        else if(theme==2){
+            spaceNavigationView.setSpaceBackgroundColor(getResources().getColor(R.color.Black));
+        }
 
         spaceNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override

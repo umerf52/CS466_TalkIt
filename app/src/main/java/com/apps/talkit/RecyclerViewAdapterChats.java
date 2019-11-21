@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -35,8 +34,6 @@ class RecyclerViewAdapterChats extends RecyclerView.Adapter<RecyclerViewAdapterC
     @Override
     public notificationsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mCtx).inflate(R.layout.chats_list, parent, false);
-        CardView cardView = view.findViewById(R.id.cardChat);
-        cardView.setCardBackgroundColor(view.getResources().getColor(R.color.colorPrimary));
         return new notificationsViewHolder(view);
     }
 

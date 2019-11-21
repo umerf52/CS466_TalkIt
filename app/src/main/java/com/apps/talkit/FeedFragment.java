@@ -2,19 +2,28 @@ package com.apps.talkit;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apps.talkit.classes.PostInfo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class FeedFragment extends Fragment {
     private ArrayList<PostInfo> postsList = new ArrayList<>();
@@ -39,25 +48,27 @@ public class FeedFragment extends Fragment {
                 startActivity(intent);
             }
         });
-//        FirebaseApp.initializeApp((getContext()));
-//        db = FirebaseFirestore.getInstance();
-//        db.collection("posts")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            postsList.clear();
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                PostInfo p = document.toObject(PostInfo.class);
-//                                postsList.add(p);
-//                            }
-//                            mAdapter.notifyDataSetChanged();
-//                        } else {
-//                            Log.w(TAG, "Error getting documents.", task.getException());
-//                        }
-//                    }
-//                });
+        if(postsList.size()==0){
+            FirebaseApp.initializeApp((getContext()));
+            db = FirebaseFirestore.getInstance();
+            db.collection("posts")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                postsList.clear();
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    PostInfo p = document.toObject(PostInfo.class);
+                                    postsList.add(p);
+                                }
+                                mAdapter.notifyDataSetChanged();
+                            } else {
+                                Log.w(TAG, "Error getting documents.", task.getException());
+                            }
+                        }
+                    });
+        }
         return v;
     }
 

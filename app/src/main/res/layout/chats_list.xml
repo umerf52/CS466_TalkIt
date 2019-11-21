@@ -13,6 +13,7 @@
         android:outlineAmbientShadowColor="@color/Black"
         app:cardElevation="3dp"
         app:cardPreventCornerOverlap="false"
+        app:cardBackgroundColor="?attr/my_background_color"
         android:layout_margin="3dp">
 
 
@@ -28,7 +29,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="ijuhuhbnhn"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
         </RelativeLayout>
 
