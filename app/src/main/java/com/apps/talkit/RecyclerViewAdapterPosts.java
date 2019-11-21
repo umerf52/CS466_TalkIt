@@ -48,13 +48,24 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
             holder.title.setTextSize(15);
         }
         holder.numUpvotes.setText(String.valueOf(posts.get(position).getNumberOfUpvotes()));
+        if(posts.get(position).getUpvoted()){
+            holder.ib.setImageResource(R.drawable.arrow_upvoted);
+        }
+
         holder.ib.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        posts.get(position).setUpvoted(true);
-                        posts.get(position).setNumberOfUpvotes(posts.get(position).getNumberOfUpvotes()+1);
-                        holder.numUpvotes.setText(String.valueOf(posts.get(position).getNumberOfUpvotes()));
-                        holder.ib.setImageResource(R.drawable.arrow_upvoted);
+                        if (!posts.get(position).getUpvoted()) {
+                            posts.get(position).setUpvoted(true);
+                            posts.get(position).setNumberOfUpvotes(posts.get(position).getNumberOfUpvotes() + 1);
+                            holder.numUpvotes.setText(String.valueOf(posts.get(position).getNumberOfUpvotes()));
+                            holder.ib.setImageResource(R.drawable.arrow_upvoted);
+                        } else {
+                            posts.get(position).setUpvoted(false);
+                            posts.get(position).setNumberOfUpvotes(posts.get(position).getNumberOfUpvotes() - 1);
+                            holder.numUpvotes.setText(String.valueOf(posts.get(position).getNumberOfUpvotes()));
+                            holder.ib.setImageResource(R.drawable.arrow_normal);
+                        }
                     }
                 });
     }

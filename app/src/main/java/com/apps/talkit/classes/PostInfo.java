@@ -1,6 +1,8 @@
 package com.apps.talkit.classes;
 
-public class PostInfo {
+import java.io.Serializable;
+
+public class PostInfo implements Serializable {
     private String postText;
     private String postID;
     private int numberOfUpvotes;
