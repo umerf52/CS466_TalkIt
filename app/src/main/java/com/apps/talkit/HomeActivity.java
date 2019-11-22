@@ -68,7 +68,9 @@ public class HomeActivity extends BaseActivity {
         spaceNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
             public void onCentreButtonClick() {
-                Toast.makeText(getTalkitContext(),"New Post", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getTalkitContext(),"New Post", Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(HomeActivity.this, PostActivity.class);
+                HomeActivity.this.startActivity(myIntent);
             }
 
             @Override

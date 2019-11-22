@@ -3,4 +3,9 @@
     <string name="continue_label">Continue</string>
     <string name="empty"> </string>
     <string name="nickname">Enter Nickname </string>
+    <string name="post_header">Start Typing....</string>
+    <string name="post_title">Title</string>
+    <string name="trigger">Trigger Warning</string>
+    <string name="enablechat">Enable Chat</string>
+    <string name="tags">Tags</string>
 </resources>
