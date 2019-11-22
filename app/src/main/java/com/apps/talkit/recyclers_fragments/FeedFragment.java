@@ -74,5 +74,4 @@ public class FeedFragment extends Fragment {
         }
         return v;
     }
-
 }

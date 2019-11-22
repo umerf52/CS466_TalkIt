@@ -1,6 +1,7 @@
 package com.apps.talkit;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ import com.apps.talkit.classes.PostInfo;
 import com.apps.talkit.classes.UserInfo;
 import com.apps.talkit.recyclers_fragments.FeedFragment;
 import com.apps.talkit.recyclers_fragments.HomeFragment;
+import com.apps.talkit.recyclers_fragments.TherapyFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -29,6 +31,7 @@ public class HomeActivity extends BaseActivity {
     private final String TAG = "HomeActivity.java";
     private SpaceNavigationView spaceNavigationView;
     private ArrayList<PostInfo> postsList = new ArrayList<>();
+    private ArrayList<Integer> myTherapy = new ArrayList<>();
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
     private FirebaseFirestore db;
@@ -43,17 +46,17 @@ public class HomeActivity extends BaseActivity {
         else if(theme==2){
             setTheme(R.style.AppThemeThree);
         }
+        setPics();
         UserInfo userInfo = (UserInfo) getIntent().getSerializableExtra("name");
         setContentView(R.layout.activity_home);
         setTitle("My Activity");
-
         Bundle bundle = new Bundle();
         bundle.putSerializable("username", userInfo);
         bundle.putInt("theme",theme);
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.setArguments(bundle);
         loadFragment(homeFragment);
-        spaceNavigationView = (SpaceNavigationView) findViewById(R.id.space);
+        spaceNavigationView = findViewById(R.id.space);
         spaceNavigationView.initWithSaveInstanceState(savedInstanceState);
         spaceNavigationView.addSpaceItem(new SpaceItem("Feed",R.drawable.feed));
         spaceNavigationView.addSpaceItem(new SpaceItem("Therapy", R.drawable.therapy));
@@ -64,18 +67,16 @@ public class HomeActivity extends BaseActivity {
         else if(theme==2){
             spaceNavigationView.setSpaceBackgroundColor(getResources().getColor(R.color.Black));
         }
-
         spaceNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
             public void onCentreButtonClick() {
-//                Toast.makeText(getTalkitContext(),"New Post", Toast.LENGTH_SHORT).show();
                 Intent myIntent = new Intent(HomeActivity.this, PostActivity.class);
                 HomeActivity.this.startActivity(myIntent);
             }
 
             @Override
             public void onItemClick(int itemIndex, String itemName) {
-                Fragment fragment = null;
+                Fragment fragment;
                 if(itemIndex==0){
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     setTitle("Feed");
@@ -86,7 +87,13 @@ public class HomeActivity extends BaseActivity {
                     loadFragment(fragment);
                 }
                 if(itemIndex==1){
-                    Toast.makeText(getTalkitContext(), "Coming Soon!", Toast.LENGTH_LONG).show();
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    setTitle("Therapy");
+                    Bundle bundle = new Bundle();
+                    bundle.putIntegerArrayList("therapy",myTherapy);
+                    fragment = new TherapyFragment();
+                    fragment.setArguments(bundle);
+                    loadFragment(fragment);
                 }
             }
 
@@ -96,7 +103,6 @@ public class HomeActivity extends BaseActivity {
                 Toast.makeText(getTalkitContext(), itemIndex + " " + itemName, Toast.LENGTH_SHORT).show();
             }
         });
-
         FirebaseApp.initializeApp((this));
         db = FirebaseFirestore.getInstance();
         db.collection("posts")
@@ -116,6 +122,20 @@ public class HomeActivity extends BaseActivity {
                         }
                     }
                 });
+    }
+
+    private void setPics(){
+        myTherapy.add(R.drawable.quote);
+        myTherapy.add(R.drawable.lifestyle);
+        myTherapy.add(R.drawable.meditation);
+        myTherapy.add(R.drawable.exercise);
+        myTherapy.add(R.drawable.tvserials);
+        myTherapy.add(R.drawable.movies);
+        myTherapy.add(R.drawable.music);
+        myTherapy.add(R.drawable.memes);
+        myTherapy.add(R.drawable.relationship);
+        myTherapy.add(R.drawable.spiritual);
+        myTherapy.add(R.drawable.professional);
     }
 
     @Override
