@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 
 import com.apps.talkit.classes.PostInfo;
 import com.apps.talkit.classes.UserInfo;
+import com.apps.talkit.recyclers_fragments.FeedFragment;
+import com.apps.talkit.recyclers_fragments.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -30,7 +32,6 @@ public class HomeActivity extends BaseActivity {
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
     private FirebaseFirestore db;
-//    private SupportActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,12 @@ public class HomeActivity extends BaseActivity {
         spaceNavigationView.addSpaceItem(new SpaceItem("Feed",R.drawable.feed));
         spaceNavigationView.addSpaceItem(new SpaceItem("Therapy", R.drawable.therapy));
         spaceNavigationView.changeCurrentItem(-1);
+        if(theme==1){
+            spaceNavigationView.setSpaceBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        else if(theme==2){
+            spaceNavigationView.setSpaceBackgroundColor(getResources().getColor(R.color.Black));
+        }
 
         spaceNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
@@ -103,7 +110,7 @@ public class HomeActivity extends BaseActivity {
                                 PostInfo p = document.toObject(PostInfo.class);
                                 postsList.add(p);
                             }
-                            postsList.add(new PostInfo("", 0, "", "You are all catched up :)"));
+                            postsList.add(new PostInfo("", 0, "", "You are all caught up :)"));
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }

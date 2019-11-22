@@ -7,6 +7,10 @@
     <color name="Hel">#808080</color>
     <color name="White">#FFFFFF</color>
     <color name="Sec" >#00203F</color>
+    <color name="transparent">#00000000</color>
+    <color name="Dif">#63675c</color>
+    <color name="Light">#d3d3d3</color>
+
 
 
 
