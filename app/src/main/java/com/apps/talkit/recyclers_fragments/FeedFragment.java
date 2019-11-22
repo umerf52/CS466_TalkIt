@@ -1,4 +1,4 @@
-package com.apps.talkit;
+package com.apps.talkit.recyclers_fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.apps.talkit.ExpandedPostActivity;
+import com.apps.talkit.R;
 import com.apps.talkit.classes.PostInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

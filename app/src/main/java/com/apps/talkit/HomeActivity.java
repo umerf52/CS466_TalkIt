@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 
 import com.apps.talkit.classes.PostInfo;
 import com.apps.talkit.classes.UserInfo;
+import com.apps.talkit.recyclers_fragments.FeedFragment;
+import com.apps.talkit.recyclers_fragments.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;

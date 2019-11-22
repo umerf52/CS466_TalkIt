@@ -1,4 +1,4 @@
-package com.apps.talkit;
+package com.apps.talkit.recyclers_fragments;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.apps.talkit.R;
 import com.apps.talkit.classes.PostInfo;
 
 import java.util.ArrayList;
