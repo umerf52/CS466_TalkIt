@@ -29,7 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription">
 
-                <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -74,14 +74,13 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="2dp"
                             android:layout_marginRight="5dp"
-                            android:layout_toRightOf="@+id/v3"
                             android:background="@color/Light" />
 
                         <ImageButton
                             android:id="@+id/action_button_1"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:src="@drawable/upvote_button_states" />
 
@@ -100,19 +99,9 @@
                             style="@style/Widget.AppCompat.Button.Borderless"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="5dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="5dp"
                             android:text="Chat"
-                            android:textColor="@color/Dif" />
-
-                        <Button
-                            android:id="@+id/action_button_2"
-                            style="@style/Widget.AppCompat.Button.Borderless"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/action_button_3"
-                            android:layout_toRightOf="@+id/num_upvotes"
-                            android:text="Comment"
                             android:textColor="@color/Dif" />
 
                     </RelativeLayout>
@@ -133,10 +122,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="end|bottom"/>
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_reply_white_24dp" />
 
 </RelativeLayout>
