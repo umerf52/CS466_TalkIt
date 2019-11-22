@@ -14,6 +14,9 @@
             android:label="Post"
             android:parentActivityName=".HomeActivity"></activity>
         <activity android:name=".HomeActivity" />
+        <activity
+            android:name=".PostActivity"
+            android:parentActivityName=".HomeActivity"></activity>
         <activity android:name=".StartupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

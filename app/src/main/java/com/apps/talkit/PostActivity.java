@@ -9,11 +9,6 @@ public class PostActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
         EditText f= findViewById(R.id.Shareyourthoughts);
-//        f.setText(
-//                getIntent().getStringExtra(
-//                        "test"
-//                )
-//        );
 
     }
 }
