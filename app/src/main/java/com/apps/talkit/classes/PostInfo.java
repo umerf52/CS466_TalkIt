@@ -1,6 +1,8 @@
 package com.apps.talkit.classes;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Map;
 
 public class PostInfo implements Serializable {
     private String postText;
@@ -8,6 +10,7 @@ public class PostInfo implements Serializable {
     private int numberOfUpvotes;
     private String postTitle;
     private boolean upvoted;
+    private Map<String, String> comments;
 
     PostInfo() {
     }
@@ -18,6 +21,7 @@ public class PostInfo implements Serializable {
         postText = txt;
         postTitle = title;
         upvoted = false;
+        comments = Collections.emptyMap();
     }
 
     public int getNumberOfUpvotes() {
@@ -58,5 +62,13 @@ public class PostInfo implements Serializable {
 
     public void setUpvoted(boolean upvoted) {
         this.upvoted = upvoted;
+    }
+
+    public Map<String, String> getComments() {
+        return comments;
+    }
+
+    public void setComments(Map<String, String> comments) {
+        this.comments = comments;
     }
 }

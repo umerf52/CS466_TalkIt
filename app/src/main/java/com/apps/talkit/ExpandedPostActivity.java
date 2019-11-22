@@ -7,8 +7,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.apps.talkit.classes.PostInfo;
+import com.apps.talkit.recyclers_fragments.RecyclerViewAdapterComments;
 
 public class ExpandedPostActivity extends AppCompatActivity {
 
@@ -17,6 +20,7 @@ public class ExpandedPostActivity extends AppCompatActivity {
     private TextView numUpvotes;
     private ImageButton upvoteButton;
     private PostInfo post;
+    private RecyclerView.Adapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,5 +59,11 @@ public class ExpandedPostActivity extends AppCompatActivity {
                 }
             }
         });
+
+        RecyclerView recyclerView = findViewById(R.id.comments);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new RecyclerViewAdapterComments(this, post.getComments());
+        recyclerView.setAdapter(mAdapter);
     }
 }
