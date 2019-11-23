@@ -9,6 +9,7 @@
     app:cardCornerRadius="0dp"
     tools:ignore="ContentDescription">
 
+
     <ImageView
         android:id="@+id/picture"
         android:layout_width="match_parent"
@@ -16,12 +17,17 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         tools:srcCompat="@drawable/quote" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lighwhit"/>
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Testing"
+        android:textStyle="bold"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="12dp"
         android:textColor="@color/White"
