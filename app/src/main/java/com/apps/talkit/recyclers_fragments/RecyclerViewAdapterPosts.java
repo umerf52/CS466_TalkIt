@@ -1,15 +1,18 @@
 package com.apps.talkit.recyclers_fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.apps.talkit.ExpandedPostActivity;
 import com.apps.talkit.R;
 import com.apps.talkit.classes.PostInfo;
 
@@ -52,6 +55,16 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
         if(posts.get(position).getUpvoted()){
             holder.ib.setImageResource(R.drawable.arrow_upvoted);
         }
+        holder.commentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mCtx, ExpandedPostActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("post", posts.get(position));
+                intent.putExtra("openDialog", true);
+                mCtx.startActivity(intent);
+            }
+        });
 
         holder.ib.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -80,6 +93,7 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
         TextView title;
         TextView numUpvotes;
         ImageButton ib;
+        Button commentButton;
 
         public postsViewHolder(View itemView) {
             super(itemView);
@@ -87,6 +101,7 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
             title = itemView.findViewById(R.id.primary_text);
             numUpvotes = itemView.findViewById(R.id.num_upvotes);
             ib = itemView.findViewById(R.id.action_button_1);
+            commentButton = itemView.findViewById(R.id.action_button_2);
             itemView.setOnClickListener(this);
         }
 

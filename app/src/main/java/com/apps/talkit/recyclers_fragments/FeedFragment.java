@@ -30,12 +30,13 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class FeedFragment extends Fragment {
     private ArrayList<PostInfo> postsList = new ArrayList<>();
     private RecyclerView.Adapter mAdapter;
-    private FirebaseFirestore db;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_feed, null);
         postsList = (ArrayList<PostInfo>) getArguments().getSerializable("posts");
+        final int theme = getArguments().getInt("theme");
         RecyclerView recyclerView = v.findViewById(R.id.posts);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -47,12 +48,14 @@ public class FeedFragment extends Fragment {
                 Intent intent = new Intent(getActivity().getBaseContext(), ExpandedPostActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("post", postsList.get(position));
+                intent.putExtra("openDialog", false);
+                intent.putExtra("theme",theme);
                 startActivity(intent);
             }
         });
         if(postsList.size()==0){
             FirebaseApp.initializeApp((getContext()));
-            db = FirebaseFirestore.getInstance();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("posts")
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
