@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#AAF0D1</color>
+    <color name="colorPrimary1">#AAF0D1</color>
+    <color name="colorSecondary1" >#00203F</color>
+    <color name="colorPrimary2">#fadadd</color>
+    <color name="colorSecondary2">#660033</color>
+    <color name="colorPrimary3">#d0c9ea</color>
+    <color name="colorSecondary3" >#4b0082</color>
+    <color name="colorPrimary4">#6497b1</color>
+    <color name="colorSecondary4">#011f4b</color>
+    <color name="colorPrimary5">#ffdf9e</color>
+    <color name="colorSecondary5">#ff4d00</color>
+
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="Black">#000000</color>
     <color name="Hel">#808080</color>
     <color name="White">#FFFFFF</color>
-    <color name="Sec" >#00203F</color>
     <color name="transparent">#00000000</color>
     <color name="Dif">#63675c</color>
     <color name="Light">#d3d3d3</color>
-    <color name="Orange">#ff4d00</color>
-    <color name="LightOrange">#ffdf9e</color>
-    <color name="Purple" >#4b0082</color>
-    <color name="LightPurple">#d0c9ea</color>
-    <color name="Blue">#011f4b</color>
-    <color name="LightBlue">#6497b1</color>
-    <color name="Lightpink">#fadadd</color>
-    <color name="Darkpink">#660033</color>
     <color name="vlight">#cdcdcd</color>
     <color name="Greytrans">#87a6a6a6</color>
     <color name="lighwhit">#87212121</color>
-
-
-
-
-
 </resources>

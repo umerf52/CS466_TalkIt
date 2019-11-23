@@ -28,7 +28,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:text="Post Title"
-                android:textColor="@color/Sec"
+                android:textColor="@color/colorSecondary1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintVertical_chainStyle="packed" />
 

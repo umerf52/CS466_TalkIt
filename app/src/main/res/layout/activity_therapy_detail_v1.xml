@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/extended_fab_label"
         android:text="@string/extended_fab_label"
-        android:backgroundTint="@color/Sec"
+        android:backgroundTint="?attr/my_color"
         app:borderWidth="0dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"

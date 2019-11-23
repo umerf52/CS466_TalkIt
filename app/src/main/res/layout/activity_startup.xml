@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="@string/nickname"
             android:textAllCaps="false"
-            android:textColor="@color/Sec"
+            android:textColor="@color/colorSecondary1"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
@@ -70,21 +70,21 @@
                 android:text="OR"
                 android:layout_centerInParent="true"
                 android:layout_margin="5dp"
-                android:textColor="@color/Sec"/>
+                android:textColor="@color/colorSecondary1"/>
             <View
                 android:id="@+id/v"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/v3"
-                android:background="@color/Sec"/>
+                android:background="@color/colorSecondary1"/>
             <View
                 android:id="@+id/v1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/v3"
-                android:background="@color/Sec"/>
+                android:background="@color/colorSecondary1"/>
         </RelativeLayout>
         <ImageButton
             android:layout_below="@id/l"

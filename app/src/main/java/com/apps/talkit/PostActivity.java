@@ -1,7 +1,12 @@
 package com.apps.talkit;
 
+import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -11,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,11 +37,50 @@ public class PostActivity extends BaseActivity {
     private CheckBox chatCheck;
     private CheckBox triggerCheck;
     private FirebaseFirestore db;
+    private TextView textviewTitle;
+    private View viewActionBar;
+    private ActionBar abar;
+    private ActionBar.LayoutParams params;
+    private Drawable upArrow;
+    private int colorPrimary;
+    private int colorSecondary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        colorPrimary = getResources().getColor(R.color.colorPrimary1);
+        colorSecondary = getResources().getColor(R.color.colorSecondary1);
+        Intent i = getIntent();
+        int theme = i.getIntExtra("theme",0);
+        if(theme==1){
+            setTheme(R.style.AppThemeTwo);
+            colorPrimary = getResources().getColor(R.color.colorPrimary2);
+            colorSecondary = getResources().getColor(R.color.colorSecondary2);
+        }
+        else if(theme==2){
+            setTheme(R.style.AppThemeThree);
+            colorPrimary = getResources().getColor(R.color.colorPrimary3);
+            colorSecondary = getResources().getColor(R.color.colorSecondary3);
+
+        }
         setContentView(R.layout.activity_post);
+        upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(colorSecondary, PorterDuff.Mode.SRC_ATOP);
+        abar = getSupportActionBar();
+        viewActionBar = getLayoutInflater().inflate(R.layout.title_layout, null);
+        params = new ActionBar.LayoutParams(//Center the textview in the ActionBar !
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                ActionBar.LayoutParams.MATCH_PARENT,
+                Gravity.CENTER);
+        textviewTitle = (TextView) viewActionBar.findViewById(R.id.actionbar_textview);
+        textviewTitle.setTextColor(colorSecondary);
+        textviewTitle.setText("Post");
+        abar.setCustomView(viewActionBar, params);
+        abar.setDisplayShowCustomEnabled(true);
+        abar.setDisplayShowTitleEnabled(false);
+        abar.setDisplayHomeAsUpEnabled(true);
+        abar.setHomeAsUpIndicator(upArrow);
+        abar.setHomeButtonEnabled(true);
 
         postText = findViewById(R.id.postContent2);
         postTitle = findViewById(R.id.title);
@@ -107,6 +152,14 @@ public class PostActivity extends BaseActivity {
         t_name.setText("");
         lLayout.addView(tv);
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

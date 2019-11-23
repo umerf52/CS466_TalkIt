@@ -45,15 +45,24 @@ public class HomeActivity extends BaseActivity {
     private ActionBar abar;
     private ActionBar.LayoutParams params;
     private Drawable upArrow;
+    private int colorPrimary;
+    private int colorSecondary;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        colorPrimary = getResources().getColor(R.color.colorPrimary1);
+        colorSecondary = getResources().getColor(R.color.colorSecondary1);
         final int theme = getIntent().getIntExtra("theme",0);
         if(theme==1){
             setTheme(R.style.AppThemeTwo);
+            colorPrimary = getResources().getColor(R.color.colorPrimary2);
+            colorSecondary = getResources().getColor(R.color.colorSecondary2);
         }
         else if(theme==2){
             setTheme(R.style.AppThemeThree);
+            colorPrimary = getResources().getColor(R.color.colorPrimary3);
+            colorSecondary = getResources().getColor(R.color.colorSecondary3);
+
         }
         setPics();
         UserInfo userInfo = (UserInfo) getIntent().getSerializableExtra("name");
@@ -66,13 +75,13 @@ public class HomeActivity extends BaseActivity {
                 ActionBar.LayoutParams.MATCH_PARENT,
                 Gravity.CENTER);
         textviewTitle = (TextView) viewActionBar.findViewById(R.id.actionbar_textview);
-        textviewTitle.setTextColor(getResources().getColor(R.color.Sec));
+        textviewTitle.setTextColor(colorSecondary);
         textviewTitle.setText("Home");
         abar.setCustomView(viewActionBar, params);
         abar.setDisplayShowCustomEnabled(true);
         abar.setDisplayShowTitleEnabled(false);
         upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
-        upArrow.setColorFilter(getResources().getColor(R.color.Sec), PorterDuff.Mode.SRC_ATOP);
+        upArrow.setColorFilter(colorSecondary, PorterDuff.Mode.SRC_ATOP);
         Bundle bundle = new Bundle();
         bundle.putSerializable("username", userInfo);
         bundle.putInt("theme",theme);
@@ -84,12 +93,9 @@ public class HomeActivity extends BaseActivity {
         spaceNavigationView.addSpaceItem(new SpaceItem("Feed",R.drawable.feed));
         spaceNavigationView.addSpaceItem(new SpaceItem("Therapy", R.drawable.therapy));
         spaceNavigationView.changeCurrentItem(-1);
-        if(theme==1){
-            spaceNavigationView.setSpaceBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-        }
-        else if(theme==2){
-            spaceNavigationView.setSpaceBackgroundColor(getResources().getColor(R.color.Black));
-        }
+        spaceNavigationView.setSpaceBackgroundColor(colorPrimary);
+        spaceNavigationView.setCentreButtonColor(colorSecondary);
+        spaceNavigationView.setInActiveSpaceItemColor(colorSecondary);
         spaceNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
             public void onCentreButtonClick() {
