@@ -19,6 +19,18 @@ public class PostActivity extends BaseActivity {
             setTheme(R.style.AppTheme);
         }
         setContentView(R.layout.activity_post);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         EditText f= findViewById(R.id.Shareyourthoughts);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

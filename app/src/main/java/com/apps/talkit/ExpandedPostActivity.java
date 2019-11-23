@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -42,6 +43,7 @@ public class ExpandedPostActivity extends BaseActivity {
             setTheme(R.style.AppTheme);
         }
         setContentView(R.layout.activity_expanded_post);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView title = findViewById(R.id.primary_text);
         TextView supportingText = findViewById(R.id.supporting_text);
         numUpvotes = findViewById(R.id.num_upvotes);
@@ -118,5 +120,15 @@ public class ExpandedPostActivity extends BaseActivity {
             }
         });
         builder.show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
