@@ -28,11 +28,20 @@ public class ExpandedPostActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expanded_post);
         Intent i = getIntent();
         post = (PostInfo) i.getSerializableExtra("post");
         boolean openDialog = i.getBooleanExtra("openDialog", false);
-
+        int theme = i.getIntExtra("theme",0);
+        if(theme==1){
+            setTheme(R.style.AppThemeTwo);
+        }
+        else if(theme==2){
+            setTheme(R.style.AppThemeThree);
+        }
+        else{
+            setTheme(R.style.AppTheme);
+        }
+        setContentView(R.layout.activity_expanded_post);
         TextView title = findViewById(R.id.primary_text);
         TextView supportingText = findViewById(R.id.supporting_text);
         numUpvotes = findViewById(R.id.num_upvotes);

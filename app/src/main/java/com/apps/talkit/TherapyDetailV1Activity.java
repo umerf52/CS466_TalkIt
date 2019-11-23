@@ -21,10 +21,19 @@ public class TherapyDetailV1Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.activity_therapy_detail_v1);
         pictures = getIntent().getIntegerArrayListExtra("images");
-
+        int theme = getIntent().getIntExtra("theme",0);
+        if(theme==1){
+            setTheme(R.style.AppThemeTwo);
+        }
+        else if(theme==2){
+            setTheme(R.style.AppThemeThree);
+        }
+        else{
+            setTheme(R.style.AppTheme);
+        }
+        setContentView(R.layout.activity_therapy_detail_v1);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         RecyclerView recyclerView = findViewById(R.id.therapy_detail);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);

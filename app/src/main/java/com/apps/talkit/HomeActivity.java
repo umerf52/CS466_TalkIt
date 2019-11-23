@@ -39,7 +39,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int theme = getIntent().getIntExtra("theme",0);
+        final int theme = getIntent().getIntExtra("theme",0);
         if(theme==1){
             setTheme(R.style.AppThemeTwo);
         }
@@ -71,6 +71,7 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onCentreButtonClick() {
                 Intent myIntent = new Intent(HomeActivity.this, PostActivity.class);
+                myIntent.putExtra("theme",theme);
                 HomeActivity.this.startActivity(myIntent);
             }
 
@@ -82,6 +83,7 @@ public class HomeActivity extends BaseActivity {
                     setTitle("Feed");
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("posts", postsList);
+                    bundle.putInt("theme",theme);
                     fragment = new FeedFragment();
                     fragment.setArguments(bundle);
                     loadFragment(fragment);
@@ -91,6 +93,7 @@ public class HomeActivity extends BaseActivity {
                     setTitle("Therapy");
                     Bundle bundle = new Bundle();
                     bundle.putIntegerArrayList("therapy",myTherapy);
+                    bundle.putInt("theme",theme);
                     fragment = new TherapyFragment();
                     fragment.setArguments(bundle);
                     loadFragment(fragment);

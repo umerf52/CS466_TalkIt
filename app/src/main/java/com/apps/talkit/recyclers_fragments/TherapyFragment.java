@@ -19,15 +19,17 @@ import java.util.ArrayList;
 public class TherapyFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private ArrayList<Integer> therapyList = new ArrayList<>();
+    private Integer theme;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_therapy,null);
         therapyList = getArguments().getIntegerArrayList("therapy");
+        theme = getArguments().getInt("theme");
         RecyclerView recyclerView = v.findViewById(R.id.therapy);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new RecyclerViewAdapterTherapy(getContext(),therapyList);
+        mAdapter = new RecyclerViewAdapterTherapy(getContext(),therapyList,theme);
         recyclerView.setAdapter(mAdapter);
         return v;
     }

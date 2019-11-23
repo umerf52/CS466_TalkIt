@@ -36,6 +36,7 @@ public class FeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_feed, null);
         postsList = (ArrayList<PostInfo>) getArguments().getSerializable("posts");
+        final int theme = getArguments().getInt("theme");
         RecyclerView recyclerView = v.findViewById(R.id.posts);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -48,6 +49,7 @@ public class FeedFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("post", postsList.get(position));
                 intent.putExtra("openDialog", false);
+                intent.putExtra("theme",theme);
                 startActivity(intent);
             }
         });

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TherapyDetailV1Activity"></activity>
+        <activity android:name=".TherapyDetailV1Activity"
+            android:parentActivityName=".HomeActivity"></activity>
         <activity
             android:name=".ExpandedPostActivity"
             android:label="Post"

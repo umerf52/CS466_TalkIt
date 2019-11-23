@@ -20,10 +20,12 @@ class RecyclerViewAdapterTherapy extends RecyclerView.Adapter<RecyclerViewAdapte
     private static RecyclerViewAdapterTherapy.MyClickListener myClickListener;
     private Context mCtx;
     private ArrayList<Integer> therapyList;
+    private Integer theme;
 
-    public RecyclerViewAdapterTherapy(Context context, ArrayList<Integer> items) {
+    public RecyclerViewAdapterTherapy(Context context, ArrayList<Integer> items, Integer t) {
         mCtx = context;
         therapyList = items;
+        theme = t;
     }
 
     @Override
@@ -56,6 +58,7 @@ class RecyclerViewAdapterTherapy extends RecyclerView.Adapter<RecyclerViewAdapte
                     myList.add(R.drawable.quote4);
                     Intent intent = new Intent(mCtx, TherapyDetailV1Activity.class);
                     intent.putIntegerArrayListExtra("images",myList);
+                    intent.putExtra("theme",theme);
                     mCtx.startActivity(intent);
                 }
                 else{
