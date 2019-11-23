@@ -81,6 +81,9 @@ class RecyclerViewAdapterTherapy extends RecyclerView.Adapter<RecyclerViewAdapte
         else if(position==10){
             holder.textView.setText("Professional Help");
         }
+        else if(position==11){
+            holder.textView.setText(" ");
+        }
 
         holder.myImage.setOnClickListener(new View.OnClickListener() {
             @Override

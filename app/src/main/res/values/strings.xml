@@ -13,5 +13,6 @@
     <string name="add_title">Add Title</string>
     <string name="add">Add</string>
     <string name="explore"><u>Explore</u></string>
+    <string name="extended_fab_label">Suggest</string>
 
 </resources>

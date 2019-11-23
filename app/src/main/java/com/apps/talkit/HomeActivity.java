@@ -172,6 +172,7 @@ public class HomeActivity extends BaseActivity {
         myTherapy.add(R.drawable.relationship);
         myTherapy.add(R.drawable.spiritual);
         myTherapy.add(R.drawable.professional);
+        myTherapy.add(R.drawable.end);
     }
 
     @Override

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TherapyDetailV1Activity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -14,7 +15,10 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Suggest"
+        android:contentDescription="@string/extended_fab_label"
+        android:text="@string/extended_fab_label"
+        android:backgroundTint="@color/Sec"
+        app:borderWidth="0dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_gravity="end|bottom"
