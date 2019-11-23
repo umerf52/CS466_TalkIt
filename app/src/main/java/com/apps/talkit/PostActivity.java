@@ -1,5 +1,7 @@
 package com.apps.talkit;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ToggleButton;
 
@@ -15,4 +17,10 @@ public class PostActivity extends BaseActivity {
         toggleButton1 = (ToggleButton) findViewById(R.id.t1);
 
     }
+    public void onShareButton(View v){
+        Intent myIntent = new Intent(this, HomeActivity.class);
+        startActivity(myIntent);
+    }
+
+
 }
