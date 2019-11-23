@@ -5,111 +5,182 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="false"
+    android:verticalScrollbarPosition="defaultPosition"
+    android:visibility="visible"
     tools:context=".PostActivity">
 
-    <EditText
-        android:id="@+id/Shareyourthoughts"
-        style="@android:style/Widget.DeviceDefault.AutoCompleteTextView"
-        android:layout_width="416dp"
-        android:layout_height="258dp"
-        android:autoText="false"
-        android:autofillHints=""
-        android:background="#72FFFFFF"
-        android:backgroundTint="#DFE2D5D5"
-        android:ems="10"
-        android:hint="Start Typing"
-        android:inputType="textLongMessage|textPersonName"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:text="@string/post_header"
-        android:textAlignment="viewStart"
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#BE0A0A0A"
-        android:textSize="30sp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="40dp"><![CDATA[>
 
-    <EditText
-        android:id="@+id/editText"
-        style="@style/Base.Widget.MaterialComponents.TextInputEditText"
-        android:layout_width="416dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="256dp"
-        android:ems="10"
-        android:hint="@string/post_title"
-        android:inputType="textPersonName"
-        android:text="@string/post_title"
-        android:textAlignment="textStart"
-        android:textAllCaps="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        ]]>
 
-    <EditText
-        android:id="@+id/tags"
-        style="@style/Base.Widget.MaterialComponents.TextInputEditText"
-        android:layout_width="410dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="328dp"
-        android:ems="10"
-        android:hint="@string/post_title"
-        android:inputType="textPersonName"
-        android:text="@string/tags"
-        android:textAlignment="textStart"
-        android:textAllCaps="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ToggleButton
+            android:id="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginEnd="308dp"
+            android:layout_marginBottom="283dp"
+            android:backgroundTintMode="src_over"
+            android:button="@drawable/button"
+            android:buttonTint="#FFFFFF"
+            android:textOff="Happy"
+            android:textOn="Happy" />
 
-    <CheckBox
-        android:id="@+id/chatCheck"
-        android:layout_width="36dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="468dp"
-        android:layout_marginEnd="16dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ToggleButton
+            android:id="@+id/t2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="125dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginEnd="198dp"
+            android:layout_marginBottom="283dp"
+            android:text="ToggleButton"
+            android:textOff="Sad"
+            android:textOn="Sad" />
 
-    <TextView
-        android:id="@+id/triggerwarning"
-        android:layout_width="127dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="468dp"
-        android:layout_marginEnd="212dp"
-        android:text="@string/trigger"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/chatCheck"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ToggleButton
+            android:id="@+id/t3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="235dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginEnd="74dp"
+            android:layout_marginBottom="283dp"
+            android:text="ToggleButton"
+            android:textOff="Motivated"
+            android:textOn="Motivated" />
 
-    <TextView
-        android:id="@+id/triggerwarning2"
-        android:layout_width="127dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="516dp"
-        android:layout_marginEnd="212dp"
-        android:text="@string/enablechat"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/triggerCheck"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ToggleButton
+            android:id="@+id/t4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="455dp"
+            android:layout_marginEnd="308dp"
+            android:layout_marginBottom="225dp"
+            android:text="ToggleButton"
+            android:textOff="Angry"
+            android:textOn="Angry" />
 
-    <CheckBox
-        android:id="@+id/triggerCheck"
-        android:layout_width="44dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="512dp"
-        android:layout_marginEnd="8dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/triggerwarning"
+            android:layout_width="127dp"
+            android:layout_height="29dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="518dp"
+            android:layout_marginEnd="269dp"
+            android:layout_marginBottom="184dp"
+            android:text="@string/trigger"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/triggerwarning2"
+            android:layout_width="106dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="288dp"
+            android:layout_marginBottom="142dp"
+            android:text="@string/enablechat"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/triggerCheck"
+            android:layout_width="36dp"
+            android:layout_height="33dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="42dp"
+            android:layout_marginBottom="178dp"
+            android:text="" />
+
+        <CheckBox
+            android:id="@+id/chatCheck"
+            android:layout_width="36dp"
+            android:layout_height="33dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="41dp"
+            android:layout_marginBottom="142dp"
+            android:text="" />
+
+        <Button
+            android:id="@+id/share_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="177dp"
+            android:layout_marginBottom="76dp"
+            android:text="Share" />
+
+        <TextView
+            android:id="@+id/tags"
+            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
+            android:layout_width="410dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="328dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="343dp"
+            android:ems="10"
+            android:text="Select Tags"
+            android:textAlignment="textStart"
+            android:textAllCaps="false" />
+
+        <EditText
+            android:id="@+id/title"
+            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
+            android:layout_width="410dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="256dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="415dp"
+            android:ems="10"
+            android:hint="Add Title"
+            android:inputType="textPersonName"
+            android:textAlignment="textStart"
+            android:textAllCaps="true" />
+
+        <EditText
+            android:id="@+id/postContent2"
+            android:layout_width="393dp"
+            android:layout_height="194dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="497dp"
+            android:background="@null"
+            android:gravity="top|left"
+            android:hint="Share your thoughts..."
+            android:linksClickable="true"
+            android:longClickable="true"
+            android:textAlignment="gravity"
+            android:textIsSelectable="true"
+            android:textSize="18sp" />
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
