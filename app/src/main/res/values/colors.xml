@@ -10,6 +10,17 @@
     <color name="transparent">#00000000</color>
     <color name="Dif">#63675c</color>
     <color name="Light">#d3d3d3</color>
+    <color name="Orange">#ff4d00</color>
+    <color name="LightOrange">#ffdf9e</color>
+    <color name="Purple" >#4b0082</color>
+    <color name="LightPurple">#d0c9ea</color>
+    <color name="Blue">#011f4b</color>
+    <color name="LightBlue">#6497b1</color>
+    <color name="Lightpink">#fadadd</color>
+    <color name="Darkpink">#660033</color>
+    <color name="vlight">#cdcdcd</color>
+
+
 
 
 

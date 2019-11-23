@@ -19,11 +19,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
                 style="@style/CardView.Light"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -109,15 +106,19 @@
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="2dp"
+            android:background="@color/White"
+            app:layout_constraintTop_toBottomOf="@id/cardView"
+            android:layout_height="match_parent">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/comments"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardView" />
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
