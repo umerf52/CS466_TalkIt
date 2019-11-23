@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,6 +48,40 @@ class RecyclerViewAdapterTherapy extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(final @NonNull therapyViewHolder holder, final int position) {
         holder.myImage.setImageResource(therapyList.get(position));
+        if(position==0){
+            holder.textView.setText("Quotes");
+        }
+        else if(position==1){
+            holder.textView.setText("Lifestyle");
+        }
+        else if(position==2){
+            holder.textView.setText("Meditation");
+        }
+        else if(position==3){
+            holder.textView.setText("Exercise");
+        }
+        else if(position==4){
+            holder.textView.setText("TV Serials");
+        }
+        else if(position==5){
+            holder.textView.setText("Movies");
+        }
+        else if(position==6){
+            holder.textView.setText("Music");
+        }
+        else if(position==7){
+            holder.textView.setText("Memes");
+        }
+        else if(position==8){
+            holder.textView.setText("Relationship");
+        }
+        else if(position==9){
+            holder.textView.setText("Spiritual");
+        }
+        else if(position==10){
+            holder.textView.setText("Professional Help");
+        }
+        
         holder.myImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,9 +109,11 @@ class RecyclerViewAdapterTherapy extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public static class therapyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView myImage;
+        TextView textView;
         public therapyViewHolder(View itemView) {
             super(itemView);
             myImage = itemView.findViewById(R.id.picture);
+            textView = itemView.findViewById(R.id.name);
         }
 
         @Override
