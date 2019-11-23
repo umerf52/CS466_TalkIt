@@ -12,11 +12,12 @@ public class PostInfo implements Serializable {
     private boolean upvoted;
     private Map<String, String> comments;
     private boolean chatEnabled;
+    private boolean isTrigger;
 
     PostInfo() {
     }
 
-    public PostInfo(String id, int num, String txt, String title, boolean ce) {
+    public PostInfo(String id, int num, String txt, String title, boolean ce, boolean it) {
         postID = id;
         numberOfUpvotes = num;
         postText = txt;
@@ -24,6 +25,7 @@ public class PostInfo implements Serializable {
         upvoted = false;
         comments = Collections.emptyMap();
         chatEnabled = ce;
+        isTrigger = it;
     }
 
     public int getNumberOfUpvotes() {
@@ -80,5 +82,13 @@ public class PostInfo implements Serializable {
 
     public void setChatEnabled(boolean chatEnabled) {
         this.chatEnabled = chatEnabled;
+    }
+
+    public boolean getIsTrigger() {
+        return isTrigger;
+    }
+
+    public void setIsTrigger(boolean trigger) {
+        isTrigger = trigger;
     }
 }

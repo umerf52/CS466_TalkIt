@@ -2,6 +2,7 @@ package com.apps.talkit.recyclers_fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apps.talkit.ExpandedPostActivity;
@@ -46,13 +48,21 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
 
     @Override
     public void onBindViewHolder(final @NonNull postsViewHolder holder, final int position) {
-        holder.post.setText(posts.get(position).getPostText());
-        holder.title.setText(posts.get(position).getPostTitle());
+        if (posts.get(position).getIsTrigger()) {
+            holder.post.setTypeface(holder.post.getTypeface(), Typeface.ITALIC);
+            holder.post.setText("This post contains a trigger warning");
+            holder.title.setVisibility(View.GONE);
+        } else {
+            holder.post.setText(posts.get(position).getPostText());
+            holder.title.setText(posts.get(position).getPostTitle());
+        }
         if (!posts.get(position).getChatEnabled()) {
             holder.chatButton.setVisibility(View.INVISIBLE);
         }
         if (position == posts.size()-1) {
+            holder.title.setTypeface(holder.title.getTypeface(), Typeface.ITALIC);
             holder.title.setTextSize(15);
+            holder.cardView.setClickable(false);
         }
         holder.numUpvotes.setText(String.valueOf(posts.get(position).getNumberOfUpvotes()));
         if(posts.get(position).getUpvoted()){
@@ -98,6 +108,7 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
         ImageButton ib;
         Button commentButton;
         Button chatButton;
+        CardView cardView;
 
         public postsViewHolder(View itemView) {
             super(itemView);
@@ -107,6 +118,7 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
             ib = itemView.findViewById(R.id.action_button_1);
             commentButton = itemView.findViewById(R.id.action_button_2);
             chatButton = itemView.findViewById(R.id.action_button_3);
+            cardView = itemView.findViewById(R.id.card_view);
             itemView.setOnClickListener(this);
         }
 
