@@ -26,6 +26,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="Post Title"
+                android:textColor="@color/Sec"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintVertical_chainStyle="packed" />
 
