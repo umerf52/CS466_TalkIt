@@ -8,5 +8,9 @@
     <string name="trigger">Trigger Warning</string>
     <string name="enablechat">Enable Chat</string>
     <string name="tags">Tags</string>
+    <string name="select_tags">Select Tags</string>
+    <string name="share">Share</string>
+    <string name="add_title">Add Title</string>
+    <string name="add">Add</string>
 
 </resources>

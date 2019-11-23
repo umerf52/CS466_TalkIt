@@ -9,179 +9,141 @@
     android:visibility="visible"
     tools:context=".PostActivity">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="40dp"><![CDATA[>
-
-        ]]>
-
-        <ToggleButton
-            android:id="@+id/t1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="400dp"
-            android:layout_marginEnd="308dp"
-            android:layout_marginBottom="283dp"
-            android:backgroundTintMode="src_over"
-            android:button="@drawable/button"
-            android:buttonTint="#FFFFFF"
-            android:textOff="Happy"
-            android:textOn="Happy" />
-
-        <ToggleButton
-            android:id="@+id/t2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="125dp"
-            android:layout_marginTop="400dp"
-            android:layout_marginEnd="198dp"
-            android:layout_marginBottom="283dp"
-            android:text="ToggleButton"
-            android:textOff="Sad"
-            android:textOn="Sad" />
-
-        <ToggleButton
-            android:id="@+id/t3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="235dp"
-            android:layout_marginTop="400dp"
-            android:layout_marginEnd="74dp"
-            android:layout_marginBottom="283dp"
-            android:text="ToggleButton"
-            android:textOff="Motivated"
-            android:textOn="Motivated" />
-
-        <ToggleButton
-            android:id="@+id/t4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="455dp"
-            android:layout_marginEnd="308dp"
-            android:layout_marginBottom="225dp"
-            android:text="ToggleButton"
-            android:textOff="Angry"
-            android:textOn="Angry" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/triggerwarning"
             android:layout_width="127dp"
             android:layout_height="29dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="518dp"
-            android:layout_marginEnd="269dp"
-            android:layout_marginBottom="184dp"
+            android:layout_marginEnd="280dp"
+            android:layout_marginBottom="128dp"
             android:text="@string/trigger"
             android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/triggerwarning2"
             android:layout_width="106dp"
             android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="288dp"
-            android:layout_marginBottom="142dp"
+            android:layout_marginEnd="304dp"
+            android:layout_marginBottom="80dp"
             android:text="@string/enablechat"
             android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <CheckBox
             android:id="@+id/triggerCheck"
             android:layout_width="36dp"
             android:layout_height="33dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="42dp"
-            android:layout_marginBottom="178dp"
-            android:text="" />
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="124dp"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <CheckBox
             android:id="@+id/chatCheck"
             android:layout_width="36dp"
             android:layout_height="33dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="41dp"
-            android:layout_marginBottom="142dp"
-            android:text="" />
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="80dp"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/share_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="177dp"
-            android:layout_marginBottom="76dp"
+            android:layout_marginEnd="176dp"
             android:onClick="onShareButton"
-            android:text="Share" />
-
-        <TextView
-            android:id="@+id/tags"
-            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
-            android:layout_width="410dp"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="328dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="343dp"
-            android:ems="10"
-            android:text="Select Tags"
-            android:textAlignment="textStart"
-            android:textAllCaps="false" />
+            android:text="@string/share"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
             android:id="@+id/title"
             style="@style/Base.Widget.MaterialComponents.TextInputEditText"
             android:layout_width="410dp"
             android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="256dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="415dp"
+            android:layout_marginBottom="408dp"
+            android:autofillHints=""
             android:ems="10"
-            android:hint="Add Title"
+            android:hint="@string/add_title"
             android:inputType="textPersonName"
             android:textAlignment="textStart"
-            android:textAllCaps="true" />
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
             android:id="@+id/postContent2"
-            android:layout_width="393dp"
-            android:layout_height="194dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="497dp"
-            android:background="@null"
+            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
+            android:layout_width="413dp"
+            android:layout_height="143dp"
+            android:autofillHints=""
+            android:background="#2ABAF8F8"
             android:gravity="top|left"
             android:hint="Share your thoughts..."
+            android:inputType="text"
             android:linksClickable="true"
             android:longClickable="true"
             android:textAlignment="gravity"
             android:textIsSelectable="true"
-            android:textSize="18sp" />
-    </RelativeLayout>
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/tagscontainer"
+            android:layout_width="409dp"
+            android:layout_height="132dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tagstext"></LinearLayout>
+
+        <Button
+            android:id="@+id/tagsubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="324dp"
+            android:layout_marginTop="340dp"
+            android:onClick="onAddTag"
+            android:text="@string/add"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/tagstext"
+            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
+            android:layout_width="292dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="332dp"
+            android:layout_marginEnd="24dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/tags"
+            android:inputType="textPersonName"
+            android:textAlignment="textStart"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toStartOf="@+id/tagsubmit"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
