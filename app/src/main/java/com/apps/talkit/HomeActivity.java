@@ -1,12 +1,18 @@
 package com.apps.talkit;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import com.apps.talkit.classes.PostInfo;
@@ -34,7 +40,11 @@ public class HomeActivity extends BaseActivity {
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
     private FirebaseFirestore db;
-
+    private TextView textviewTitle;
+    private View viewActionBar;
+    private ActionBar abar;
+    private ActionBar.LayoutParams params;
+    private Drawable upArrow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +58,21 @@ public class HomeActivity extends BaseActivity {
         setPics();
         UserInfo userInfo = (UserInfo) getIntent().getSerializableExtra("name");
         setContentView(R.layout.activity_home);
-        setTitle("My Activity");
+
+        abar = getSupportActionBar();
+        viewActionBar = getLayoutInflater().inflate(R.layout.title_layout, null);
+        params = new ActionBar.LayoutParams(//Center the textview in the ActionBar !
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                ActionBar.LayoutParams.MATCH_PARENT,
+                Gravity.CENTER);
+        textviewTitle = (TextView) viewActionBar.findViewById(R.id.actionbar_textview);
+        textviewTitle.setTextColor(getResources().getColor(R.color.Sec));
+        textviewTitle.setText("Home");
+        abar.setCustomView(viewActionBar, params);
+        abar.setDisplayShowCustomEnabled(true);
+        abar.setDisplayShowTitleEnabled(false);
+        upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(getResources().getColor(R.color.Sec), PorterDuff.Mode.SRC_ATOP);
         Bundle bundle = new Bundle();
         bundle.putSerializable("username", userInfo);
         bundle.putInt("theme",theme);
@@ -78,8 +102,13 @@ public class HomeActivity extends BaseActivity {
             public void onItemClick(int itemIndex, String itemName) {
                 Fragment fragment;
                 if(itemIndex==0){
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                    setTitle("Feed");
+                    textviewTitle.setText("Feed");
+                    abar.setCustomView(viewActionBar, params);
+                    abar.setDisplayShowCustomEnabled(true);
+                    abar.setDisplayShowTitleEnabled(false);
+                    abar.setDisplayHomeAsUpEnabled(true);
+                    abar.setHomeAsUpIndicator(upArrow);
+                    abar.setHomeButtonEnabled(true);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("posts", postsList);
                     bundle.putInt("theme",theme);
@@ -88,8 +117,13 @@ public class HomeActivity extends BaseActivity {
                     loadFragment(fragment);
                 }
                 if(itemIndex==1){
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                    setTitle("Therapy");
+                    textviewTitle.setText("Therapy");
+                    abar.setCustomView(viewActionBar, params);
+                    abar.setDisplayShowCustomEnabled(true);
+                    abar.setDisplayShowTitleEnabled(false);
+                    abar.setHomeAsUpIndicator(upArrow);
+                    abar.setDisplayHomeAsUpEnabled(true);
+                    abar.setHomeButtonEnabled(true);
                     Bundle bundle = new Bundle();
                     bundle.putIntegerArrayList("therapy",myTherapy);
                     bundle.putInt("theme",theme);
@@ -148,7 +182,10 @@ public class HomeActivity extends BaseActivity {
                 HomeFragment homeFragment = new HomeFragment();
                 homeFragment.setArguments(bundle);
                 loadFragment(homeFragment);
-                setTitle("My Activity");
+                textviewTitle.setText("Home");
+                abar.setCustomView(viewActionBar, params);
+                abar.setDisplayShowCustomEnabled(true);
+                abar.setDisplayShowTitleEnabled(false);
                 spaceNavigationView.changeCurrentItem(-1);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             default:
