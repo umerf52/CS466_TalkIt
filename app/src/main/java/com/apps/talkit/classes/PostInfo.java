@@ -17,8 +17,7 @@ public class PostInfo implements Serializable {
     PostInfo() {
     }
 
-    public PostInfo(String id, int num, String txt, String title, boolean ce, boolean it) {
-        postID = id;
+    public PostInfo(int num, String txt, String title, boolean ce, boolean it) {
         numberOfUpvotes = num;
         postText = txt;
         postTitle = title;
@@ -34,14 +33,6 @@ public class PostInfo implements Serializable {
 
     public void setNumberOfUpvotes(int numberOfUpvotes) {
         this.numberOfUpvotes = numberOfUpvotes;
-    }
-
-    public String getPostID() {
-        return postID;
-    }
-
-    public void setPostID(String postID) {
-        this.postID = postID;
     }
 
     public String getPostText() {

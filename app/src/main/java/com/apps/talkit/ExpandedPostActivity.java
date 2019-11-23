@@ -19,6 +19,7 @@ import com.apps.talkit.classes.PostInfo;
 import com.apps.talkit.recyclers_fragments.RecyclerViewAdapterComments;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class ExpandedPostActivity extends BaseActivity {
@@ -104,6 +105,7 @@ public class ExpandedPostActivity extends BaseActivity {
     private void showCommentDialogBox() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ExpandedPostActivity.this);
         builder.setTitle("Write your comment");
+        builder.setCancelable(false);
 
         // Set up the input
         final EditText input = new EditText(getApplicationContext());
@@ -115,7 +117,10 @@ public class ExpandedPostActivity extends BaseActivity {
         builder.setPositiveButton("Comment", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Map<String, String> temp = post.getComments();
+                Map<String, String> temp = Collections.emptyMap();
+                if (post.getComments() != null) {
+                    temp = post.getComments();
+                }
                 temp.put("You", input.getText().toString().trim());
                 post.setComments(temp);
             }

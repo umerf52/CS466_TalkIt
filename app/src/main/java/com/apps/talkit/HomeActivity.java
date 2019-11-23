@@ -152,7 +152,7 @@ public class HomeActivity extends BaseActivity {
                                 PostInfo p = document.toObject(PostInfo.class);
                                 postsList.add(p);
                             }
-                            postsList.add(new PostInfo("", 0, "", "You are all caught up :)", false, false));
+                            postsList.add(new PostInfo(0, "", "You are all caught up :)", false, false));
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
