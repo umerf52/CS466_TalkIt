@@ -48,6 +48,9 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
     public void onBindViewHolder(final @NonNull postsViewHolder holder, final int position) {
         holder.post.setText(posts.get(position).getPostText());
         holder.title.setText(posts.get(position).getPostTitle());
+        if (!posts.get(position).getChatEnabled()) {
+            holder.chatButton.setVisibility(View.INVISIBLE);
+        }
         if (position == posts.size()-1) {
             holder.title.setTextSize(15);
         }
@@ -94,6 +97,7 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
         TextView numUpvotes;
         ImageButton ib;
         Button commentButton;
+        Button chatButton;
 
         public postsViewHolder(View itemView) {
             super(itemView);
@@ -102,6 +106,7 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
             numUpvotes = itemView.findViewById(R.id.num_upvotes);
             ib = itemView.findViewById(R.id.action_button_1);
             commentButton = itemView.findViewById(R.id.action_button_2);
+            chatButton = itemView.findViewById(R.id.action_button_3);
             itemView.setOnClickListener(this);
         }
 

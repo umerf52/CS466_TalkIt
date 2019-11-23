@@ -11,17 +11,19 @@ public class PostInfo implements Serializable {
     private String postTitle;
     private boolean upvoted;
     private Map<String, String> comments;
+    private boolean chatEnabled;
 
     PostInfo() {
     }
 
-    public PostInfo(String id, int num, String txt, String title) {
+    public PostInfo(String id, int num, String txt, String title, boolean ce) {
         postID = id;
         numberOfUpvotes = num;
         postText = txt;
         postTitle = title;
         upvoted = false;
         comments = Collections.emptyMap();
+        chatEnabled = ce;
     }
 
     public int getNumberOfUpvotes() {
@@ -70,5 +72,13 @@ public class PostInfo implements Serializable {
 
     public void setComments(Map<String, String> comments) {
         this.comments = comments;
+    }
+
+    public boolean getChatEnabled() {
+        return chatEnabled;
+    }
+
+    public void setChatEnabled(boolean chatEnabled) {
+        this.chatEnabled = chatEnabled;
     }
 }

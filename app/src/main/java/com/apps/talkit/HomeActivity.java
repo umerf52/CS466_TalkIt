@@ -1,7 +1,6 @@
 package com.apps.talkit;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -119,7 +118,7 @@ public class HomeActivity extends BaseActivity {
                                 PostInfo p = document.toObject(PostInfo.class);
                                 postsList.add(p);
                             }
-                            postsList.add(new PostInfo("", 0, "", "You are all caught up :)"));
+                            postsList.add(new PostInfo("", 0, "", "You are all caught up :)", false));
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }

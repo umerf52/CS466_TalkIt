@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class ExpandedPostActivity extends BaseActivity {
     private TextView numUpvotes;
     private ImageButton upvoteButton;
     private PostInfo post;
+    private Button chatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class ExpandedPostActivity extends BaseActivity {
         numUpvotes = findViewById(R.id.num_upvotes);
         upvoteButton = findViewById(R.id.action_button_1);
         FloatingActionButton floatingActionButton = findViewById(R.id.fab);
+        chatButton = findViewById(R.id.action_button_3);
 
         title.setText(post.getPostTitle());
         supportingText.setText(post.getPostText());
@@ -88,6 +91,10 @@ public class ExpandedPostActivity extends BaseActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.Adapter mAdapter = new RecyclerViewAdapterComments(this, post.getComments());
         recyclerView.setAdapter(mAdapter);
+
+        if (!post.getChatEnabled()) {
+            chatButton.setVisibility(View.INVISIBLE);
+        }
 
         if (openDialog) {
             showCommentDialogBox();

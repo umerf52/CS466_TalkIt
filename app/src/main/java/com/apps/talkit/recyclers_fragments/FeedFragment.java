@@ -67,7 +67,7 @@ public class FeedFragment extends Fragment {
                                     PostInfo p = document.toObject(PostInfo.class);
                                     postsList.add(p);
                                 }
-                                postsList.add(new PostInfo("", 0, "", "You are all caught up :)"));
+                                postsList.add(new PostInfo("", 0, "", "You are all caught up :)", false));
                                 mAdapter.notifyDataSetChanged();
                             } else {
                                 Log.w(TAG, "Error getting documents.", task.getException());
