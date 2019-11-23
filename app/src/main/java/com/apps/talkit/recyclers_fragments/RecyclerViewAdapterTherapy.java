@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.apps.talkit.R;
 import com.apps.talkit.TherapyDetailV1Activity;
-import com.apps.talkit.classes.PostInfo;
 
 import java.util.ArrayList;
 
@@ -57,7 +54,6 @@ class RecyclerViewAdapterTherapy extends RecyclerView.Adapter<RecyclerViewAdapte
                     myList.add(R.drawable.quote2);
                     myList.add(R.drawable.quote3);
                     myList.add(R.drawable.quote4);
-
                     Intent intent = new Intent(mCtx, TherapyDetailV1Activity.class);
                     intent.putIntegerArrayListExtra("images",myList);
                     mCtx.startActivity(intent);
