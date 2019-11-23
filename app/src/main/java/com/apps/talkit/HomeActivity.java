@@ -100,7 +100,7 @@ public class HomeActivity extends BaseActivity {
 
             @Override
             public void onItemReselected(int itemIndex, String itemName) {
-                Toast.makeText(getTalkitContext(), itemIndex + " " + itemName, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getTalkitContext(), itemIndex + " " + itemName, Toast.LENGTH_SHORT).show();
             }
         });
         FirebaseApp.initializeApp((this));
