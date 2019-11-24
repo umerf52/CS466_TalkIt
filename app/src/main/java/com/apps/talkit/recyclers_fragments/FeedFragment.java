@@ -6,9 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,7 +37,6 @@ public class FeedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_feed, null);
-        postsList = (ArrayList<PostInfo>) getArguments().getSerializable("posts");
         final int theme = getArguments().getInt("theme");
         RecyclerView recyclerView = v.findViewById(R.id.posts);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -52,28 +53,39 @@ public class FeedFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        if(postsList.size()==0){
-            FirebaseApp.initializeApp((getContext()));
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("posts")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                postsList.clear();
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    PostInfo p = document.toObject(PostInfo.class);
-                                    postsList.add(p);
-                                }
-                                postsList.add(new PostInfo(0, "", "You are all caught up :)", false, false));
-                                mAdapter.notifyDataSetChanged();
-                            } else {
-                                Log.w(TAG, "Error getting documents.", task.getException());
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setCancelable(false);
+
+        // Set up the input
+        final ProgressBar progressBar = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleLarge);
+        progressBar.setIndeterminate(true);
+        progressBar.isShown();
+        builder.setView(progressBar);
+
+        final AlertDialog alertDialog = builder.show();
+
+        FirebaseApp.initializeApp((getContext()));
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("posts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        alertDialog.dismiss();
+                        if (task.isSuccessful()) {
+                            postsList.clear();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                PostInfo p = document.toObject(PostInfo.class);
+                                postsList.add(p);
                             }
+                            postsList.add(new PostInfo("", "You are all caught up :)", false, false));
+                            mAdapter.notifyDataSetChanged();
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
                         }
-                    });
-        }
+                    }
+                });
         return v;
     }
 }

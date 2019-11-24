@@ -170,7 +170,7 @@ public class HomeActivity extends BaseActivity {
                                 postsList.add(p);
 //                                Log.e(TAG, p.getCommentsKeys().toString());
                             }
-                            postsList.add(new PostInfo(0, "", "You are all caught up :)", false, false));
+                            postsList.add(new PostInfo("", "You are all caught up :)", false, false));
                             for(int i=0; i<postsList.size(); i++){
                                 String title = postsList.get(i).getPostTitle();
                                 if(title.equals("New Friends Needed") || title.equals("Bestfriend") || title.equals("Dire Situation")){

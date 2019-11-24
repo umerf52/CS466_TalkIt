@@ -21,8 +21,8 @@ public class PostInfo implements Serializable {
         commentValues = new HashMap<>();
     }
 
-    public PostInfo(int num, String txt, String title, boolean ce, boolean it) {
-        numberOfUpvotes = num;
+    public PostInfo(String txt, String title, boolean ce, boolean it) {
+        numberOfUpvotes = 0;
         postText = txt;
         postTitle = title;
         upvoted = false;
