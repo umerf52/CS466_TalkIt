@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -27,7 +28,20 @@ public class StartupActivity extends AppCompatActivity {
 
         Button continue_button = findViewById(R.id.continueButton);
         final EditText nickname = findViewById(R.id.nickname);
+        ImageButton fb = findViewById(R.id.login);
+        ImageButton google = findViewById(R.id.google);
 
+        fb.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        google.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         continue_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

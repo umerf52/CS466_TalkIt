@@ -109,6 +109,7 @@
             android:layout_below="@id/login"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:id="@+id/google"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:textColor="@color/White"

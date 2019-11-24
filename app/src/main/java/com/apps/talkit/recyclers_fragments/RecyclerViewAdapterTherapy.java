@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.apps.talkit.R;
 import com.apps.talkit.TherapyDetailV1Activity;
+import com.apps.talkit.TherapyDetailV2Activity;
 
 import java.util.ArrayList;
 
@@ -99,8 +100,62 @@ class RecyclerViewAdapterTherapy extends RecyclerView.Adapter<RecyclerViewAdapte
                     intent.putExtra("theme",theme);
                     mCtx.startActivity(intent);
                 }
+                else if(position==1){
+                    ArrayList<Integer> myList = new ArrayList<>();
+                    ArrayList<String> tips = new ArrayList<>();
+                    myList.add(R.drawable.life1);
+                    myList.add(R.drawable.life2);
+                    myList.add(R.drawable.life3);
+                    myList.add(R.drawable.life4);
+                    myList.add(R.drawable.life5);
+                    tips.add("Fill your plate with fresh, whole foods and drink plenty of water");
+                    tips.add("Cut the sweetened beverages");
+                    tips.add("Try going decaf");
+                    tips.add("Beat procrastination");
+                    tips.add("Pursue a hobby");
+                    Intent intent = new Intent(mCtx, TherapyDetailV2Activity.class);
+                    intent.putIntegerArrayListExtra("images",myList);
+                    intent.putStringArrayListExtra("tips",tips);
+                    intent.putExtra("theme",theme);
+                    intent.putExtra("title","Lifestyle");
+                    mCtx.startActivity(intent);
+                }
+                else if(position==2){
+                    ArrayList<Integer> myList = new ArrayList<>();
+                    ArrayList<String> tips = new ArrayList<>();
+                    myList.add(R.drawable.med1);
+                    myList.add(R.drawable.med2);
+                    myList.add(R.drawable.med3);
+                    tips.add("Mindfulness Meditation");
+                    tips.add("Body Scan Meditation");
+                    tips.add("Loving Kindness Meditation");
+                    Intent intent = new Intent(mCtx, TherapyDetailV2Activity.class);
+                    intent.putIntegerArrayListExtra("images",myList);
+                    intent.putStringArrayListExtra("tips",tips);
+                    intent.putExtra("theme",theme);
+                    intent.putExtra("title","Meditation");
+                    mCtx.startActivity(intent);
+                }
+                else if(position==3){
+                    ArrayList<Integer> myList = new ArrayList<>();
+                    ArrayList<String> tips = new ArrayList<>();
+                    myList.add(R.drawable.exe1);
+                    myList.add(R.drawable.exe2);
+                    myList.add(R.drawable.exe3);
+                    myList.add(R.drawable.exe4);
+                    tips.add("Set Off That Runner's High");
+                    tips.add("Build Your Muscles");
+                    tips.add("Yoga");
+                    tips.add("Tai Chi");
+                    Intent intent = new Intent(mCtx, TherapyDetailV2Activity.class);
+                    intent.putIntegerArrayListExtra("images",myList);
+                    intent.putStringArrayListExtra("tips",tips);
+                    intent.putExtra("theme",theme);
+                    intent.putExtra("title","Exercise");
+                    mCtx.startActivity(intent);
+                }
                 else{
-                    Toast.makeText(mCtx, "Clicked: "+position, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mCtx, "Clicked: "+position, Toast.LENGTH_SHORT).show();
                 }
             }
         });

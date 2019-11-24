@@ -1,12 +1,5 @@
 package com.apps.talkit;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.PorterDuff;
@@ -23,13 +16,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
 
-public class TherapyDetailV1Activity extends AppCompatActivity {
+public class TherapyDetailV2Activity extends AppCompatActivity {
     private TextView textviewTitle;
     private View viewActionBar;
     private ActionBar abar;
@@ -38,13 +36,16 @@ public class TherapyDetailV1Activity extends AppCompatActivity {
     private ArrayList<Integer> pictures;
     private int colorPrimary;
     private int colorSecondary;
+    private ArrayList<String> tips = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         colorPrimary = getResources().getColor(R.color.colorPrimary1);
         colorSecondary = getResources().getColor(R.color.colorSecondary1);
         pictures = getIntent().getIntegerArrayListExtra("images");
+        tips = getIntent().getStringArrayListExtra("tips");
         int theme = getIntent().getIntExtra("theme",0);
+        String title = getIntent().getStringExtra("title");
         if(theme==1){
             setTheme(R.style.AppThemeTwo);
             colorPrimary = getResources().getColor(R.color.colorPrimary2);
@@ -66,7 +67,7 @@ public class TherapyDetailV1Activity extends AppCompatActivity {
             colorPrimary = getResources().getColor(R.color.colorPrimary5);
             colorSecondary = getResources().getColor(R.color.colorSecondary5);
         }
-        setContentView(R.layout.activity_therapy_detail_v1);
+        setContentView(R.layout.activity_therapy_detail_v2);
         upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(colorSecondary, PorterDuff.Mode.SRC_ATOP);
         abar = getSupportActionBar();
@@ -77,7 +78,7 @@ public class TherapyDetailV1Activity extends AppCompatActivity {
                 Gravity.CENTER);
         textviewTitle = (TextView) viewActionBar.findViewById(R.id.actionbar_textview);
         textviewTitle.setTextColor(colorSecondary);
-        textviewTitle.setText("Quotes");
+        textviewTitle.setText(title);
         abar.setCustomView(viewActionBar, params);
         abar.setDisplayShowCustomEnabled(true);
         abar.setDisplayShowTitleEnabled(false);
@@ -87,7 +88,7 @@ public class TherapyDetailV1Activity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.therapy_detail);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        RecyclerView.Adapter mAdapter = new RecyclerViewAdapterTherapyDetail(this, pictures);
+        RecyclerView.Adapter mAdapter = new RecyclerViewAdapterTherapyDetail2(this, pictures,tips);
         recyclerView.setAdapter(mAdapter);
 
         FloatingActionButton floatingActionButton = findViewById(R.id.fab);
@@ -100,8 +101,9 @@ public class TherapyDetailV1Activity extends AppCompatActivity {
         });
     }
 
+
     private void showSuggestDialogBox() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(TherapyDetailV1Activity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(TherapyDetailV2Activity.this);
         builder.setTitle("Kindly provide a name or a link of the item you would like to suggest");
         builder.setCancelable(false);
 
@@ -115,7 +117,7 @@ public class TherapyDetailV1Activity extends AppCompatActivity {
         builder.setPositiveButton("Suggest", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(TherapyDetailV1Activity.this, "Thank you! ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TherapyDetailV2Activity.this, "Thank you! ", Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
@@ -138,14 +140,16 @@ public class TherapyDetailV1Activity extends AppCompatActivity {
     }
 }
 
-class RecyclerViewAdapterTherapyDetail extends RecyclerView.Adapter<RecyclerViewAdapterTherapyDetail.therapyViewHolder> {
-    private static RecyclerViewAdapterTherapyDetail.MyClickListener myClickListener;
+class RecyclerViewAdapterTherapyDetail2 extends RecyclerView.Adapter<RecyclerViewAdapterTherapyDetail2.therapyViewHolder> {
+    private static MyClickListener myClickListener;
     private Context mCtx;
     private ArrayList<Integer> therapyList;
+    private ArrayList<String> tips;
 
-    public RecyclerViewAdapterTherapyDetail(Context context, ArrayList<Integer> items) {
+    public RecyclerViewAdapterTherapyDetail2(Context context, ArrayList<Integer> items, ArrayList<String> items2) {
         mCtx = context;
         therapyList = items;
+        tips = items2;
     }
 
     @Override
@@ -153,20 +157,21 @@ class RecyclerViewAdapterTherapyDetail extends RecyclerView.Adapter<RecyclerView
         return therapyList.size();
     }
 
-    public void setOnItemClickListener(RecyclerViewAdapterTherapyDetail.MyClickListener myClickListener) {
+    public void setOnItemClickListener(MyClickListener myClickListener) {
         this.myClickListener = myClickListener;
     }
 
     @NonNull
     @Override
     public therapyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mCtx).inflate(R.layout.therapy_detail_list1, parent, false);
+        View view = LayoutInflater.from(mCtx).inflate(R.layout.therapy_detail_list2, parent, false);
         return new therapyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final @NonNull therapyViewHolder holder, final int position) {
         holder.myImage.setImageResource(therapyList.get(position));
+        holder.myText.setText(tips.get(position));
     }
 
     public interface MyClickListener {
@@ -175,9 +180,11 @@ class RecyclerViewAdapterTherapyDetail extends RecyclerView.Adapter<RecyclerView
 
     public static class therapyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView myImage;
+        TextView myText;
         public therapyViewHolder(View itemView) {
             super(itemView);
             myImage = itemView.findViewById(R.id.picture);
+            myText = itemView.findViewById(R.id.myText);
         }
 
         @Override
