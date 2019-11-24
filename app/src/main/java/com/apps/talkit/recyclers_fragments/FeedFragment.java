@@ -48,7 +48,6 @@ public class FeedFragment extends Fragment {
                 Intent intent = new Intent(getActivity().getBaseContext(), ExpandedPostActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("post", postsList.get(position));
-                intent.putExtra("openDialog", false);
                 intent.putExtra("theme",theme);
                 startActivity(intent);
             }

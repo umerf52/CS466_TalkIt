@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ExpandedPostActivity">
-    <ScrollView android:layout_width="match_parent"
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -120,18 +122,40 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    
+    <LinearLayout
+        android:id="@+id/layout_chatbox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:minHeight="48dp"
         android:layout_alignParentBottom="true"
-        app:borderWidth="0dp"
-        android:backgroundTint="?attr/my_color"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="end|bottom"
-        android:background="?attr/my_color"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        android:src="@drawable/ic_reply_white_24dp" />
+        android:background="?attr/my_background_color">
+
+        <EditText
+            android:id="@+id/edittext_chatbox"
+            android:hint="Enter Comment"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:maxLines="6"/>
+
+        <Button
+            android:id="@+id/button_chatbox_send"
+            android:text="Comment"
+            android:textSize="10sp"
+            android:textColor="@color/White"
+            android:background="?attr/my_color"
+            android:clickable="true"
+            android:layout_width="64dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:layout_gravity="bottom" />
+
+    </LinearLayout>
 
 </RelativeLayout>

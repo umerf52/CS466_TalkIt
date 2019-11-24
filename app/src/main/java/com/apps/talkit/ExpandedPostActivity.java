@@ -1,5 +1,6 @@
 package com.apps.talkit;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -9,6 +10,7 @@ import android.text.InputType;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -46,7 +48,6 @@ public class ExpandedPostActivity extends BaseActivity {
         colorSecondary = getResources().getColor(R.color.colorSecondary1);
         Intent i = getIntent();
         post = (PostInfo) i.getSerializableExtra("post");
-        boolean openDialog = i.getBooleanExtra("openDialog", false);
         int theme = i.getIntExtra("theme",0);
         if(theme==1){
             setTheme(R.style.AppThemeTwo);
@@ -91,7 +92,6 @@ public class ExpandedPostActivity extends BaseActivity {
         TextView supportingText = findViewById(R.id.supporting_text);
         numUpvotes = findViewById(R.id.num_upvotes);
         upvoteButton = findViewById(R.id.action_button_1);
-        FloatingActionButton floatingActionButton = findViewById(R.id.fab);
         chatButton = findViewById(R.id.action_button_3);
 
         title.setText(post.getPostTitle());
@@ -120,13 +120,6 @@ public class ExpandedPostActivity extends BaseActivity {
             }
         });
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showCommentDialogBox();
-            }
-        });
-
         RecyclerView recyclerView = findViewById(R.id.comments);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -137,41 +130,28 @@ public class ExpandedPostActivity extends BaseActivity {
             chatButton.setVisibility(View.INVISIBLE);
         }
 
-        if (openDialog) {
-            showCommentDialogBox();
-        }
-    }
+        final EditText comment = findViewById(R.id.edittext_chatbox);
+        Button button = findViewById(R.id.button_chatbox_send);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String toPost = comment.getText().toString();
+                if(!toPost.isEmpty()){
+                    Map<String, String> temp = Collections.emptyMap();
+                    if (post.getComments() != null) {
+                        temp = post.getComments();
+                    }
+                    temp.put("You", toPost.trim());
+                    post.setComments(temp);
+                    comment.getText().clear();
+                    InputMethodManager inputManager = (InputMethodManager)
+                            getSystemService(Context.INPUT_METHOD_SERVICE);
 
-    private void showCommentDialogBox() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ExpandedPostActivity.this);
-        builder.setTitle("Write your comment");
-        builder.setCancelable(false);
-
-        // Set up the input
-        final EditText input = new EditText(getApplicationContext());
-        // Specify the type of input expected; this, for example
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        builder.setView(input);
-
-        // Set up the buttons
-        builder.setPositiveButton("Comment", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Map<String, String> temp = Collections.emptyMap();
-                if (post.getComments() != null) {
-                    temp = post.getComments();
+                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
                 }
-                temp.put("You", input.getText().toString().trim());
-                post.setComments(temp);
             }
         });
-        builder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builder.show();
+
     }
 
     @Override
