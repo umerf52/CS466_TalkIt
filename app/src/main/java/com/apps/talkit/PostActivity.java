@@ -63,6 +63,16 @@ public class PostActivity extends BaseActivity {
             colorSecondary = getResources().getColor(R.color.colorSecondary3);
 
         }
+        else if(theme==3){
+            setTheme(R.style.AppThemeFour);
+            colorPrimary = getResources().getColor(R.color.colorPrimary4);
+            colorSecondary = getResources().getColor(R.color.colorSecondary4);
+        }
+        else if(theme==4){
+            setTheme(R.style.AppThemeFive);
+            colorPrimary = getResources().getColor(R.color.colorPrimary5);
+            colorSecondary = getResources().getColor(R.color.colorSecondary5);
+        }
         setContentView(R.layout.activity_post);
         upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(colorSecondary, PorterDuff.Mode.SRC_ATOP);
@@ -147,6 +157,7 @@ public class PostActivity extends BaseActivity {
         LinearLayout lLayout = findViewById(R.id.tagscontainer);
         EditText t_name = findViewById(R.id.tagstext);
         TextView tv = new TextView(this);
+        tv.setTextColor(colorSecondary);
         tv.setText("  "+ t_name.getText());
 //        tv.setId("1");
         t_name.setText("");

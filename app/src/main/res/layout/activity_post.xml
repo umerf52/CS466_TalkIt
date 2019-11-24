@@ -1,157 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="false"
-    android:verticalScrollbarPosition="defaultPosition"
-    android:visibility="visible"
     tools:context=".PostActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/relativeLayout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="-70dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/triggerwarning"
-            android:layout_width="127dp"
-            android:layout_height="29dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="164dp"
-            android:text="@string/trigger"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/triggerwarning2"
-            app:layout_constraintEnd_toStartOf="@+id/triggerCheck"
-            app:layout_constraintTop_toBottomOf="@+id/tagscontainer"
-            app:layout_constraintVertical_bias="0.0" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/triggerwarning2"
-            android:layout_width="106dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="184dp"
-            android:layout_marginBottom="80dp"
-            android:text="@string/enablechat"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/chatCheck" />
+            <EditText
+                android:id="@+id/postContent2"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:autofillHints=""
+                android:gravity="top|left"
+                android:hint="Share your thoughts..."
+                android:inputType="textMultiLine"
+                android:textAlignment="gravity"
+                android:textIsSelectable="true"
+                android:textSize="18sp"/>
 
-        <CheckBox
-            android:id="@+id/triggerCheck"
-            android:layout_width="36dp"
-            android:layout_height="33dp"
-            android:layout_marginEnd="44dp"
-            android:layout_marginBottom="124dp"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagscontainer" />
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_below="@id/postContent2"
+                android:layout_marginTop="5dp"
+                android:text="Title"
+                android:textStyle="bold"
+                android:layout_marginLeft="3dp"
+                android:textSize="20sp"
+                android:textColor="@color/Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <CheckBox
-            android:id="@+id/chatCheck"
-            android:layout_width="36dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="44dp"
-            android:layout_marginBottom="80dp"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/triggerCheck" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/titleLayout"
+                android:layout_below="@id/title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/empty"
+                android:inputType="text"
+                android:orientation="vertical"
+                android:textColor="@color/Black"
+                app:errorEnabled="false"
+                app:hintEnabled="false"
+                app:hintAnimationEnabled="false">
 
-        <Button
-            android:id="@+id/share_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="176dp"
-            android:onClick="onShareButton"
-            android:text="@string/share"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/triggerwarning2" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAlignment="gravity"
+                    android:inputType="text"
+                    android:background="@drawable/sign"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/title"
-            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
-            android:layout_width="410dp"
-            android:layout_height="60dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/add_title"
-            android:inputType="textPersonName"
-            android:textAlignment="textStart"
-            android:textAllCaps="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/postContent2" />
+            <TextView
+                android:id="@+id/tag_text"
+                android:layout_below="@id/titleLayout"
+                android:layout_marginTop="5dp"
+                android:text="Tags"
+                android:textStyle="bold"
+                android:layout_marginLeft="3dp"
+                android:textSize="20sp"
+                android:textColor="@color/Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <EditText
-            android:id="@+id/postContent2"
-            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
-            android:layout_width="413dp"
-            android:layout_height="143dp"
-            android:autofillHints=""
-            android:background="#2ABAF8F8"
-            android:gravity="top|left"
-            android:hint="Share your thoughts..."
-            android:inputType="textMultiLine"
-            android:linksClickable="true"
-            android:longClickable="true"
-            android:textAlignment="gravity"
-            android:textIsSelectable="true"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.086"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tagLayout"
+                android:layout_below="@id/tag_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/empty"
+                android:inputType="text"
+                android:orientation="vertical"
+                android:textColor="@color/Black"
+                app:errorEnabled="false"
+                app:hintEnabled="false"
+                app:hintAnimationEnabled="false">
 
-        <LinearLayout
-            android:id="@+id/tagscontainer"
-            android:layout_width="409dp"
-            android:layout_height="132dp"
-            android:layout_marginStart="4dp"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagstext"></LinearLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tagstext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAlignment="gravity"
+                    android:inputType="text"
+                    android:textAllCaps="true"
+                    android:background="@drawable/sign"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/tagsubmit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="332dp"
-            android:layout_marginBottom="12dp"
-            android:onClick="onAddTag"
-            android:text="@string/add"
-            app:layout_constraintBottom_toTopOf="@+id/tagscontainer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/tagsubmit"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tagLayout"
+                android:textColor="@color/White"
+                android:background="@drawable/button"
+                android:layout_marginTop="3dp"
+                android:onClick="onAddTag"
+                android:text="@string/add" />
 
-        <EditText
-            android:id="@+id/tagstext"
-            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
-            android:layout_width="292dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="84dp"
-            android:layout_marginEnd="24dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/tags"
-            android:inputType="textPersonName"
-            android:textAlignment="textStart"
-            android:textAllCaps="true"
-            app:layout_constraintEnd_toStartOf="@+id/tagsubmit"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            <LinearLayout
+                android:id="@+id/tagscontainer"
+                android:layout_below="@id/tagLayout"
+                android:layout_width="50dp"
+                android:layout_marginLeft="3dp"
+                android:layout_alignParentLeft="true"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:orientation="horizontal"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/triggerwarning"
+                android:layout_below="@id/tagsubmit"
+                android:layout_marginTop="25dp"
+                android:text="@string/trigger"
+                android:textStyle="bold"
+                android:layout_marginLeft="3dp"
+                android:textSize="20sp"
+                android:textColor="@color/Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
+            <CheckBox
+                android:id="@+id/triggerCheck"
+                android:layout_below="@id/tagsubmit"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/triggerwarning2"
+                android:layout_below="@id/triggerwarning"
+                android:layout_marginTop="25dp"
+                android:text="@string/enablechat"
+                android:textStyle="bold"
+                android:layout_marginLeft="3dp"
+                android:textSize="20sp"
+                android:textColor="@color/Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <CheckBox
+                android:id="@+id/chatCheck"
+                android:layout_below="@id/triggerCheck"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <Button
+                android:id="@+id/share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/triggerwarning2"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:onClick="onShareButton"
+                android:textColor="@color/White"
+                android:background="@drawable/button"
+                android:text="@string/share"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

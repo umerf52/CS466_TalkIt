@@ -57,7 +57,16 @@ public class ExpandedPostActivity extends BaseActivity {
             setTheme(R.style.AppThemeThree);
             colorPrimary = getResources().getColor(R.color.colorPrimary3);
             colorSecondary = getResources().getColor(R.color.colorSecondary3);
-
+        }
+        else if(theme==3){
+            setTheme(R.style.AppThemeFour);
+            colorPrimary = getResources().getColor(R.color.colorPrimary4);
+            colorSecondary = getResources().getColor(R.color.colorSecondary4);
+        }
+        else if(theme==4){
+            setTheme(R.style.AppThemeFive);
+            colorPrimary = getResources().getColor(R.color.colorPrimary5);
+            colorSecondary = getResources().getColor(R.color.colorSecondary5);
         }
         setContentView(R.layout.activity_expanded_post);
         upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);

@@ -51,6 +51,20 @@ public class HomeFragment extends Fragment {
                     intent.putExtra("name", myUser);
                     getActivity().startActivity(intent);
                 }
+                else if(theme==2){
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("theme",3);
+                    intent.putExtra("name", myUser);
+                    getActivity().startActivity(intent);
+                }
+                else if(theme==3){
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("theme",4);
+                    intent.putExtra("name", myUser);
+                    getActivity().startActivity(intent);
+                }
                 else{
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

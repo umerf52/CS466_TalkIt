@@ -47,6 +47,16 @@ public class TherapyDetailV1Activity extends AppCompatActivity {
             colorSecondary = getResources().getColor(R.color.colorSecondary3);
 
         }
+        else if(theme==3){
+            setTheme(R.style.AppThemeFour);
+            colorPrimary = getResources().getColor(R.color.colorPrimary4);
+            colorSecondary = getResources().getColor(R.color.colorSecondary4);
+        }
+        else if(theme==4){
+            setTheme(R.style.AppThemeFive);
+            colorPrimary = getResources().getColor(R.color.colorPrimary5);
+            colorSecondary = getResources().getColor(R.color.colorSecondary5);
+        }
         setContentView(R.layout.activity_therapy_detail_v1);
         upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(colorSecondary, PorterDuff.Mode.SRC_ATOP);
