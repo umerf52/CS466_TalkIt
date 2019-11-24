@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -236,8 +237,26 @@ class RecyclerViewAdapterTherapy extends RecyclerView.Adapter<RecyclerViewAdapte
                     intent.putExtra("title","Relationship");
                     mCtx.startActivity(intent);
                 }
-                else{
-//                    Toast.makeText(mCtx, "Clicked: "+position, Toast.LENGTH_SHORT).show();
+                else if(position==9){
+                    ArrayList<Integer> myList = new ArrayList<>();
+                    ArrayList<String> tips = new ArrayList<>();
+                    myList.add(R.drawable.spirit1);
+                    myList.add(R.drawable.spirit2);
+                    myList.add(R.drawable.spirit3);
+                    myList.add(R.drawable.spirit4);
+                    tips.add("Say no to your emotions and yes to communion with God");
+                    tips.add("Thank God for taking care of you and loving you even when you can’t feel it or see it");
+                    tips.add("Recite Surah Duha");
+                    tips.add("God can heal any physical problem, including one that causes, or is caused by, depression (Psalm 103:3; Matthew 8:16-17)");
+                    Intent intent = new Intent(mCtx, TherapyDetailV2Activity.class);
+                    intent.putIntegerArrayListExtra("images",myList);
+                    intent.putStringArrayListExtra("tips",tips);
+                    intent.putExtra("theme",theme);
+                    intent.putExtra("title","Spiritual");
+                    mCtx.startActivity(intent);
+                }
+                else if(position==10){
+                    Toast.makeText(mCtx, "Coming Soon!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
