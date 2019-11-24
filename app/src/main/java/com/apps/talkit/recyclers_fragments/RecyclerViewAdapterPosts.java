@@ -77,6 +77,7 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
                 Intent intent = new Intent(mCtx, ExpandedPostActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("post", posts.get(position));
+                intent.putExtra("theme",theme);
                 mCtx.startActivity(intent);
             }
         });

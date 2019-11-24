@@ -216,6 +216,26 @@ class RecyclerViewAdapterTherapy extends RecyclerView.Adapter<RecyclerViewAdapte
                     intent.putExtra("title","Memes");
                     mCtx.startActivity(intent);
                 }
+                else if(position==8){
+                    ArrayList<Integer> myList = new ArrayList<>();
+                    ArrayList<String> tips = new ArrayList<>();
+                    myList.add(R.drawable.rel1);
+                    myList.add(R.drawable.rel2);
+                    myList.add(R.drawable.rel3);
+                    myList.add(R.drawable.rel4);
+                    myList.add(R.drawable.rel5);
+                    tips.add("Don’t expect the person you bring into your life to fix you or solve your depression");
+                    tips.add("Respect your emotional peaks and valleys");
+                    tips.add("Take it slow and establish trust");
+                    tips.add("Check in with your partner to see how things are going from their perspective");
+                    tips.add("Make yourself available to conversation, even if it’s about mundane day-to-day things");
+                    Intent intent = new Intent(mCtx, TherapyDetailV2Activity.class);
+                    intent.putIntegerArrayListExtra("images",myList);
+                    intent.putStringArrayListExtra("tips",tips);
+                    intent.putExtra("theme",theme);
+                    intent.putExtra("title","Relationship");
+                    mCtx.startActivity(intent);
+                }
                 else{
 //                    Toast.makeText(mCtx, "Clicked: "+position, Toast.LENGTH_SHORT).show();
                 }

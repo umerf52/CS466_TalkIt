@@ -28,7 +28,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
                 app:active_item_color="@color/White"
-                app:centre_button_icon="@drawable/talkit"
+                app:centre_button_icon="@drawable/post"
                 app:inactive_centre_button_icon_color="@color/White"/>
 
         </FrameLayout>
