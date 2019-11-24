@@ -2,23 +2,32 @@ package com.apps.talkit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
 
 public class TherapyDetailV1Activity extends AppCompatActivity {
     private TextView textviewTitle;
@@ -79,6 +88,42 @@ public class TherapyDetailV1Activity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.Adapter mAdapter = new RecyclerViewAdapterTherapyDetail(this, pictures);
         recyclerView.setAdapter(mAdapter);
+
+        FloatingActionButton floatingActionButton = findViewById(R.id.fab);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSuggestDialogBox();
+            }
+        });
+    }
+
+    private void showSuggestDialogBox() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(TherapyDetailV1Activity.this);
+        builder.setTitle("Kindly provide a name or a link of the item you would like to suggest");
+        builder.setCancelable(false);
+
+        // Set up the input
+        final EditText input = new EditText(getApplicationContext());
+        // Specify the type of input expected; this, for example
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton("Suggest", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(TherapyDetailV1Activity.this, "Thank you! ", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 
     @Override
