@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -152,6 +151,38 @@ class RecyclerViewAdapterTherapy extends RecyclerView.Adapter<RecyclerViewAdapte
                     intent.putStringArrayListExtra("tips",tips);
                     intent.putExtra("theme",theme);
                     intent.putExtra("title","Exercise");
+                    mCtx.startActivity(intent);
+                }
+                else if(position==4){
+                    ArrayList<Integer> myList = new ArrayList<>();
+                    ArrayList<String> tips = new ArrayList<>();
+                    myList.add(R.drawable.tv1);
+                    myList.add(R.drawable.tv2);
+                    myList.add(R.drawable.tv3);
+                    tips.add("The Office");
+                    tips.add("Friends");
+                    tips.add("Seinfeld");
+                    Intent intent = new Intent(mCtx, TherapyDetailV2Activity.class);
+                    intent.putIntegerArrayListExtra("images",myList);
+                    intent.putStringArrayListExtra("tips",tips);
+                    intent.putExtra("theme",theme);
+                    intent.putExtra("title","TV Series");
+                    mCtx.startActivity(intent);
+                }
+                else if(position==5){
+                    ArrayList<Integer> myList = new ArrayList<>();
+                    ArrayList<String> tips = new ArrayList<>();
+                    myList.add(R.drawable.mov1);
+                    myList.add(R.drawable.mov2);
+                    myList.add(R.drawable.mov3);
+                    tips.add("Shrek");
+                    tips.add("The 21 Jump Street");
+                    tips.add("Hera Pheri");
+                    Intent intent = new Intent(mCtx, TherapyDetailV2Activity.class);
+                    intent.putIntegerArrayListExtra("images",myList);
+                    intent.putStringArrayListExtra("tips",tips);
+                    intent.putExtra("theme",theme);
+                    intent.putExtra("title","Movies");
                     mCtx.startActivity(intent);
                 }
                 else{
