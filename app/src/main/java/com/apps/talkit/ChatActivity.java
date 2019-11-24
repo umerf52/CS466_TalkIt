@@ -1,26 +1,41 @@
 package com.apps.talkit;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.apps.talkit.classes.Messages;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity {
+
+    final private String TAG = "ChatActivity.java";
+
     private TextView textviewTitle;
     private View viewActionBar;
     private ActionBar abar;
@@ -32,8 +47,48 @@ public class ChatActivity extends AppCompatActivity {
     private RecyclerView mMessageRecycler;
     private MessageListAdapter mMessageAdapter;
     private ArrayList<Messages> messageList = new ArrayList<>();
+    private ArrayList<String> receivedMessages = new ArrayList<>();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    ;
+    private DocumentReference receiveRef = db.document("chats/server_messages");
+    private int lastReceivedIndex = 0;
+    private ArrayList<String> sentMessages = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Reset the tables on database
+        Map<String, Object> temp = new HashMap<>();
+        temp.put("messages", sentMessages);
+        db.collection("chats").document("client_messages")
+                .set(temp)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+
+        db.collection("chats").document("server_messages")
+                .set(temp)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+
         super.onCreate(savedInstanceState);
         colorPrimary = getResources().getColor(R.color.colorPrimary1);
         colorSecondary = getResources().getColor(R.color.colorSecondary1);
@@ -89,9 +144,26 @@ public class ChatActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String message = chatMessage.getText().toString();
+                String message = chatMessage.getText().toString().trim();
                 if(!message.isEmpty()){
-                    Messages toSend = new Messages(message,0);
+                    sentMessages.add(message);
+                    Map<String, Object> temp = new HashMap<>();
+                    temp.put("messages", sentMessages);
+                    db.collection("chats").document("client_messages")
+                            .set(temp)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error writing document", e);
+                                }
+                            });
+                    Messages toSend = new Messages(message, 0);
                     messageList.add(toSend);
                     mMessageAdapter.notifyDataSetChanged();
                     chatMessage.getText().clear();
@@ -99,7 +171,6 @@ public class ChatActivity extends AppCompatActivity {
             }
 
         });
-
     }
 
     @Override
@@ -110,5 +181,32 @@ public class ChatActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        receiveRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException e) {
+                if (e != null) {
+                    Toast.makeText(ChatActivity.this, "Error while loading!", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, e.toString());
+                    return;
+                }
+
+                if (documentSnapshot.exists()) {
+                    receivedMessages = (ArrayList<String>) documentSnapshot.get("messages");
+                    if (receivedMessages.size() > 0 && receivedMessages.size() >= lastReceivedIndex) {
+                        String messageText = receivedMessages.get(lastReceivedIndex);
+                        lastReceivedIndex++;
+                        Messages messages = new Messages(messageText, 1);
+                        messageList.add(messages);
+                        mMessageAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        });
     }
 }

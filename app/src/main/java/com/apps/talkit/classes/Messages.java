@@ -1,8 +1,8 @@
 package com.apps.talkit.classes;
 
 public class Messages {
-    String message;
-    int check; //0=my message, 1 = received message
+    private String message;
+    private int check; //0 = sent message, 1 = received message
 
     public Messages(String message, int check) {
         this.message = message;
