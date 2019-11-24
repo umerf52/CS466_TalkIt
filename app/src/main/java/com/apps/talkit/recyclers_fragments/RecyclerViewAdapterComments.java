@@ -70,6 +70,7 @@ public class RecyclerViewAdapterComments extends RecyclerView.Adapter<RecyclerVi
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("title", keyString);
                 intent.putExtra("theme",theme);
+                intent.putExtra("history",0);
                 mCtx.startActivity(intent);
             }
         });

@@ -36,6 +36,7 @@ public class HomeActivity extends BaseActivity {
     private final String TAG = "HomeActivity.java";
     private SpaceNavigationView spaceNavigationView;
     private ArrayList<PostInfo> postsList = new ArrayList<>();
+    private ArrayList<PostInfo> notifyList = new ArrayList<>();
     private ArrayList<Integer> myTherapy = new ArrayList<>();
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
@@ -95,7 +96,7 @@ public class HomeActivity extends BaseActivity {
         Bundle bundle = new Bundle();
         bundle.putSerializable("username", userInfo);
         bundle.putInt("theme",theme);
-        HomeFragment homeFragment = new HomeFragment();
+        final HomeFragment homeFragment = new HomeFragment();
         homeFragment.setArguments(bundle);
         loadFragment(homeFragment);
         spaceNavigationView = findViewById(R.id.space);
@@ -170,12 +171,20 @@ public class HomeActivity extends BaseActivity {
 //                                Log.e(TAG, p.getCommentsKeys().toString());
                             }
                             postsList.add(new PostInfo(0, "", "You are all caught up :)", false, false));
+                            for(int i=0; i<postsList.size(); i++){
+                                String title = postsList.get(i).getPostTitle();
+                                if(title.equals("New Friends Needed") || title.equals("Bestfriend") || title.equals("Dire Situation")){
+                                    notifyList.add(postsList.get(i));
+                                }
+                            }
+                            homeFragment.putArguments(notifyList);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
     }
+
 
     private void setPics(){
         myTherapy.add(R.drawable.quote);

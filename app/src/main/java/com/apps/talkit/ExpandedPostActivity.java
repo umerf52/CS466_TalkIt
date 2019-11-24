@@ -98,6 +98,7 @@ public class ExpandedPostActivity extends BaseActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("title", post.getPostTitle());
                 intent.putExtra("theme",theme);
+                intent.putExtra("history",0);
                 ExpandedPostActivity.this.startActivity(intent);
             }
         });

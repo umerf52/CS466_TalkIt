@@ -14,8 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.apps.talkit.ChatActivity;
+import com.apps.talkit.ExpandedPostActivity;
 import com.apps.talkit.HomeActivity;
 import com.apps.talkit.R;
+import com.apps.talkit.classes.PostInfo;
 import com.apps.talkit.classes.UserInfo;
 
 import java.util.ArrayList;
@@ -27,6 +30,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView.Adapter mAdapterC;
     private UserInfo myUser;
     private int theme;
+    ArrayList<PostInfo> notifyList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -99,14 +103,20 @@ public class HomeFragment extends Fragment {
         return v;
     }
 
+    public void putArguments(ArrayList<PostInfo> myList){
+        for(int i=0;i<myList.size(); i++){
+            notifyList.add(myList.get(i));
+        }
+    }
+
     private void fillTheLists() {
-        notificationsList.add("Sam commented on your post");
         notificationsList.add("Your post received up votes");
-        notificationsList.add("John commented on your post");
+        notificationsList.add("Aiza commented on your post");
+        notificationsList.add("Ahmad commented on your post");
 
         chats.add("Anon: I know right! Things are not the best");
         chats.add("Anon: Hi! I would like to talk to you");
-        chats.add("John: Nice talking to you");
+        chats.add("You: Can I ask you something?");
     }
 
     @Override
@@ -116,14 +126,35 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(int position, View v) {
                 String x = notificationsList.get(position);
-                Toast.makeText(getContext(), x, Toast.LENGTH_LONG).show();
+                if(position<notifyList.size()){
+                    Intent intent = new Intent(getContext(), ExpandedPostActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("post", notifyList.get(position));
+                    intent.putExtra("theme",theme);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getContext(), "Loading please wait!", Toast.LENGTH_LONG).show();
+                }
             }
         });
         ((RecyclerViewAdapterChats) mAdapterC).setOnItemClickListener(new RecyclerViewAdapterChats.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                String x = chats.get(position);
-                Toast.makeText(getContext(), x, Toast.LENGTH_LONG).show();
+//                String x = chats.get(position);
+//                Toast.makeText(getContext(), x, Toast.LENGTH_LONG).show();
+                String title;
+                if(position==0 || position==1){
+                    title = "Anon";
+                }
+                else{
+                    title = "Zaid";
+                }
+                Intent intent = new Intent(getContext(), ChatActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("title",title);
+                intent.putExtra("theme",theme);
+                intent.putExtra("history",position+1);
+                startActivity(intent);
 
             }
         });

@@ -95,6 +95,7 @@ public class ChatActivity extends AppCompatActivity {
         Intent i = getIntent();
         title = i.getStringExtra("title");
         int theme = i.getIntExtra("theme",0);
+        int history = i.getIntExtra("history",0);
         if(theme==1){
             setTheme(R.style.AppThemeTwo);
             colorPrimary = getResources().getColor(R.color.colorPrimary2);
@@ -133,6 +134,29 @@ public class ChatActivity extends AppCompatActivity {
         abar.setDisplayHomeAsUpEnabled(true);
         abar.setHomeAsUpIndicator(upArrow);
         abar.setHomeButtonEnabled(true);
+
+        if(history!=0){
+            if(history==1){
+                Messages messages1 = new Messages("Hi, how are you doing?",0);
+                Messages messages2 = new Messages("Hello, I am ok, thankyou",1);
+                Messages messages3 = new Messages("I read your post regarding the smog, it certainly is bad!",0);
+                Messages messages4 = new Messages("I know right! Things are not the best",1);
+                messageList.add(messages1);
+                messageList.add(messages2);
+                messageList.add(messages3);
+                messageList.add(messages4);
+            }
+            else if(history==2){
+                Messages messages1 = new Messages("Hi! I would like to talk to you",1);
+                messageList.add(messages1);
+            }
+            else if(history==3){
+                Messages messages1 = new Messages("Hey, I hope you don't mind..",0);
+                Messages messages2 = new Messages("but can I ask something?",0);
+                messageList.add(messages1);
+                messageList.add(messages2);
+            }
+        }
 
         mMessageRecycler = findViewById(R.id.reyclerview_message_list);
         mMessageAdapter = new MessageListAdapter(this, messageList);

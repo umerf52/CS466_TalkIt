@@ -71,6 +71,8 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
             holder.title.setTypeface(holder.title.getTypeface(), Typeface.ITALIC);
             holder.title.setTextSize(15);
             holder.cardView.setClickable(false);
+        }else{
+            holder.title.setTypeface(holder.title.getTypeface(), Typeface.NORMAL);
         }
         holder.numUpvotes.setText(String.valueOf(posts.get(position).getNumberOfUpvotes()));
         if(posts.get(position).getUpvoted()){
@@ -111,6 +113,7 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("title", posts.get(position).getPostTitle());
                 intent.putExtra("theme",theme);
+                intent.putExtra("history",0);
                 mCtx.startActivity(intent);
             }
         });
