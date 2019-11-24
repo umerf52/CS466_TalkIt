@@ -39,7 +39,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/therapy_detail"
+        android:id="@+id/reyclerview_message_list"
         android:layout_width="match_parent"
         android:layout_below="@id/layout_annon"
         android:layout_height="match_parent"/>
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:id="@+id/v"
-        android:layout_below="@id/therapy_detail"
+        android:layout_below="@id/reyclerview_message_list"
         android:background="#dfdfdf"
         android:layout_marginBottom="0dp"/>
     <LinearLayout

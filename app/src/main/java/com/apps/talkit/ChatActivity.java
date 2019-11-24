@@ -2,6 +2,8 @@ package com.apps.talkit;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -10,7 +12,13 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import com.apps.talkit.classes.Messages;
+
+import java.util.ArrayList;
 
 public class ChatActivity extends AppCompatActivity {
     private TextView textviewTitle;
@@ -21,6 +29,9 @@ public class ChatActivity extends AppCompatActivity {
     private int colorPrimary;
     private int colorSecondary;
     private String title;
+    private RecyclerView mMessageRecycler;
+    private MessageListAdapter mMessageAdapter;
+    private ArrayList<Messages> messageList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +78,28 @@ public class ChatActivity extends AppCompatActivity {
         abar.setDisplayHomeAsUpEnabled(true);
         abar.setHomeAsUpIndicator(upArrow);
         abar.setHomeButtonEnabled(true);
+
+        mMessageRecycler = (RecyclerView) findViewById(R.id.reyclerview_message_list);
+        mMessageAdapter = new MessageListAdapter(this, messageList);
+        mMessageRecycler.setLayoutManager(new LinearLayoutManager(this));
+        mMessageRecycler.setAdapter(mMessageAdapter);
+
+        final EditText chatMessage = findViewById(R.id.edittext_chatbox);
+        Button button = findViewById(R.id.button_chatbox_send);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = chatMessage.getText().toString();
+                if(!message.isEmpty()){
+                    Messages toSend = new Messages(message,0);
+                    messageList.add(toSend);
+                    mMessageAdapter.notifyDataSetChanged();
+                    chatMessage.getText().clear();
+                }
+            }
+
+        });
+
     }
 
     @Override
