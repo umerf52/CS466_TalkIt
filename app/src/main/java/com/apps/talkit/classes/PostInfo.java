@@ -1,8 +1,7 @@
 package com.apps.talkit.classes;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Map;
+import java.util.HashMap;
 
 public class PostInfo implements Serializable {
     private String postText;
@@ -10,11 +9,16 @@ public class PostInfo implements Serializable {
     private int numberOfUpvotes;
     private String postTitle;
     private boolean upvoted;
-    private Map<String, String> comments;
+    private HashMap<String, String> commentKeys;
+    private HashMap<String, String> commentValues;
     private boolean chatEnabled;
     private boolean isTrigger;
 
     PostInfo() {
+        upvoted = false;
+        numberOfUpvotes = 0;
+        commentKeys = new HashMap<>();
+        commentValues = new HashMap<>();
     }
 
     public PostInfo(int num, String txt, String title, boolean ce, boolean it) {
@@ -22,7 +26,8 @@ public class PostInfo implements Serializable {
         postText = txt;
         postTitle = title;
         upvoted = false;
-        comments = Collections.emptyMap();
+        commentKeys = new HashMap<>();
+        commentValues = new HashMap<>();
         chatEnabled = ce;
         isTrigger = it;
     }
@@ -59,14 +64,6 @@ public class PostInfo implements Serializable {
         this.upvoted = upvoted;
     }
 
-    public Map<String, String> getComments() {
-        return comments;
-    }
-
-    public void setComments(Map<String, String> comments) {
-        this.comments = comments;
-    }
-
     public boolean getChatEnabled() {
         return chatEnabled;
     }
@@ -81,5 +78,21 @@ public class PostInfo implements Serializable {
 
     public void setIsTrigger(boolean trigger) {
         isTrigger = trigger;
+    }
+
+    public HashMap<String, String> getCommentKeys() {
+        return commentKeys;
+    }
+
+    public void setCommentKeys(HashMap<String, String> commentKeys) {
+        this.commentKeys = commentKeys;
+    }
+
+    public HashMap<String, String> getCommentValues() {
+        return commentValues;
+    }
+
+    public void setCommentValues(HashMap<String, String> commentValues) {
+        this.commentValues = commentValues;
     }
 }

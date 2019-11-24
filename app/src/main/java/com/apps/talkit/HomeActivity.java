@@ -167,6 +167,7 @@ public class HomeActivity extends BaseActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 PostInfo p = document.toObject(PostInfo.class);
                                 postsList.add(p);
+//                                Log.e(TAG, p.getCommentsKeys().toString());
                             }
                             postsList.add(new PostInfo(0, "", "You are all caught up :)", false, false));
                         } else {

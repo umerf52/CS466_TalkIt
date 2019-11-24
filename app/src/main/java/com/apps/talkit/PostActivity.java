@@ -108,7 +108,8 @@ public class PostActivity extends BaseActivity {
         boolean isTrigger = false;
         String textString = postText.getText().toString().trim();
         String titleString = postTitle.getText().toString().trim();
-        Map<String, String> comments = Collections.emptyMap();
+        Map<String, String> commentKeys = Collections.emptyMap();
+        Map<String, String> commentValues = Collections.emptyMap();
         int numUpvotes = 0;
         boolean upvoted = false;
 
@@ -116,7 +117,8 @@ public class PostActivity extends BaseActivity {
         if (triggerCheck.isChecked()) isTrigger = true;
         Map<String, Object> post = new HashMap<>();
         post.put("chatEnabled", isChat);
-        post.put("comments", comments);
+        post.put("commentKeys", commentKeys);
+        post.put("commentValues", commentValues);
         post.put("isTrigger", isTrigger);
         post.put("numberOfUpvotes", numUpvotes);
         post.put("postText", textString);

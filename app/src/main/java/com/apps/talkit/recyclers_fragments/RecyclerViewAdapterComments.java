@@ -14,24 +14,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.apps.talkit.ChatActivity;
 import com.apps.talkit.R;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class RecyclerViewAdapterComments extends RecyclerView.Adapter<RecyclerViewAdapterComments.commentsViewHolder> {
     private static RecyclerViewAdapterComments.MyClickListener myClickListener;
     private Context mCtx;
-    private Map<String, String> comments;
+    private Map<String, String> commentsKeys = new HashMap<>();
+    private Map<String, String> commentValues = new HashMap<>();
     private int theme;
 
-    public RecyclerViewAdapterComments(Context context, Map<String, String> items, int the) {
+    public RecyclerViewAdapterComments(Context context, HashMap<String, String> keys, HashMap<String, String> values, int the) {
         mCtx = context;
-        comments = items;
+        commentsKeys = keys;
+        commentValues = values;
         theme = the;
     }
 
     @Override
     public int getItemCount() {
         try {
-            return comments.size();
+            return commentsKeys.size();
         } catch (NullPointerException e) {
             return 0;
         }
@@ -50,16 +53,22 @@ public class RecyclerViewAdapterComments extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onBindViewHolder(final @NonNull commentsViewHolder holder, final int position) {
-        final String key = comments.keySet().toArray()[position].toString();
-        String value = comments.get(key);
-        holder.commentTitle.setText(key);
-        holder.commentText.setText(value);
+        final String temp = commentsKeys.keySet().toArray()[position].toString();
+        final String keyString = commentsKeys.get(temp);
+        if (keyString == "You") {
+            holder.button.setVisibility(View.GONE);
+        }
+
+        final String temp1 = commentValues.keySet().toArray()[position].toString();
+        String valueSting = commentValues.get(temp1);
+        holder.commentTitle.setText(keyString);
+        holder.commentText.setText(valueSting);
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mCtx, ChatActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("title", key);
+                intent.putExtra("title", keyString);
                 intent.putExtra("theme",theme);
                 mCtx.startActivity(intent);
             }

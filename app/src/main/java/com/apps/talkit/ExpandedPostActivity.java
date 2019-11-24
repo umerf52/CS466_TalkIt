@@ -1,12 +1,10 @@
 package com.apps.talkit;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,18 +15,17 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apps.talkit.classes.PostInfo;
 import com.apps.talkit.recyclers_fragments.RecyclerViewAdapterComments;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.Collections;
-import java.util.Map;
+import java.util.HashMap;
 
 public class ExpandedPostActivity extends BaseActivity {
+
+    final private String TAG = "ExpandedPostActivity.java";
 
     private TextView numUpvotes;
     private ImageButton upvoteButton;
@@ -134,7 +131,7 @@ public class ExpandedPostActivity extends BaseActivity {
         RecyclerView recyclerView = findViewById(R.id.comments);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        RecyclerView.Adapter mAdapter = new RecyclerViewAdapterComments(this, post.getComments(),theme);
+        final RecyclerView.Adapter mAdapter = new RecyclerViewAdapterComments(this, post.getCommentKeys(), post.getCommentValues(), theme);
         recyclerView.setAdapter(mAdapter);
 
         if (!post.getChatEnabled()) {
@@ -147,12 +144,23 @@ public class ExpandedPostActivity extends BaseActivity {
             public void onClick(View v) {
                 String toPost = comment.getText().toString().trim();
                 if(!toPost.isEmpty()){
-                    Map<String, String> temp = Collections.emptyMap();
-                    if (post.getComments() != null) {
-                        temp = post.getComments();
+                    HashMap<String, String> tempKeys = new HashMap<>();
+                    HashMap<String, String> tempValues = new HashMap<>();
+                    if (post.getCommentKeys() != null && post.getCommentValues() != null) {
+                        tempKeys = post.getCommentKeys();
+                        tempValues = post.getCommentValues();
                     }
-                    temp.put("You", toPost);
-                    post.setComments(temp);
+                    String tempKey;
+                    try {
+                        tempKey = String.valueOf(post.getCommentKeys().size());
+                    } catch (NullPointerException e) {
+                        tempKey = "0";
+                    }
+                    tempKeys.put(tempKey, "You");
+                    tempValues.put(tempKey, toPost.trim());
+                    post.setCommentKeys(tempKeys);
+                    post.setCommentValues(tempValues);
+                    mAdapter.notifyDataSetChanged();
                     comment.getText().clear();
                     InputMethodManager inputManager = (InputMethodManager)
                             getSystemService(Context.INPUT_METHOD_SERVICE);
