@@ -69,7 +69,7 @@ public class ChatActivity extends AppCompatActivity {
                 ActionBar.LayoutParams.WRAP_CONTENT,
                 ActionBar.LayoutParams.MATCH_PARENT,
                 Gravity.CENTER);
-        textviewTitle = (TextView) viewActionBar.findViewById(R.id.actionbar_textview);
+        textviewTitle = viewActionBar.findViewById(R.id.actionbar_textview);
         textviewTitle.setTextColor(colorSecondary);
         textviewTitle.setText(title);
         abar.setCustomView(viewActionBar, params);
@@ -79,7 +79,7 @@ public class ChatActivity extends AppCompatActivity {
         abar.setHomeAsUpIndicator(upArrow);
         abar.setHomeButtonEnabled(true);
 
-        mMessageRecycler = (RecyclerView) findViewById(R.id.reyclerview_message_list);
+        mMessageRecycler = findViewById(R.id.reyclerview_message_list);
         mMessageAdapter = new MessageListAdapter(this, messageList);
         mMessageRecycler.setLayoutManager(new LinearLayoutManager(this));
         mMessageRecycler.setAdapter(mMessageAdapter);

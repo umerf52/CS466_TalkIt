@@ -145,13 +145,13 @@ public class ExpandedPostActivity extends BaseActivity {
         Button button = findViewById(R.id.button_chatbox_send);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String toPost = comment.getText().toString();
+                String toPost = comment.getText().toString().trim();
                 if(!toPost.isEmpty()){
                     Map<String, String> temp = Collections.emptyMap();
                     if (post.getComments() != null) {
                         temp = post.getComments();
                     }
-                    temp.put("You", toPost.trim());
+                    temp.put("You", toPost);
                     post.setComments(temp);
                     comment.getText().clear();
                     InputMethodManager inputManager = (InputMethodManager)
