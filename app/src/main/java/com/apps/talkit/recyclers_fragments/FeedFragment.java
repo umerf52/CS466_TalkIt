@@ -40,7 +40,7 @@ public class FeedFragment extends Fragment {
         RecyclerView recyclerView = v.findViewById(R.id.posts);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new RecyclerViewAdapterPosts(getContext(), postsList);
+        mAdapter = new RecyclerViewAdapterPosts(getContext(), postsList,theme);
         recyclerView.setAdapter(mAdapter);
         ((RecyclerViewAdapterPosts) mAdapter).setOnItemClickListener(new RecyclerViewAdapterPosts.MyClickListener() {
             @Override

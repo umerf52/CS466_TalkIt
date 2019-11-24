@@ -9,13 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TherapyDetailV1Activity"></activity>
+        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".TherapyDetailV1Activity" />
         <activity
             android:name=".ExpandedPostActivity"
-            android:label="Post"/>
+            android:label="Post" />
         <activity android:name=".HomeActivity" />
-        <activity
-            android:name=".PostActivity" />
+        <activity android:name=".PostActivity" />
         <activity android:name=".StartupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

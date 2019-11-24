@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.apps.talkit.ChatActivity;
 import com.apps.talkit.ExpandedPostActivity;
 import com.apps.talkit.R;
 import com.apps.talkit.classes.PostInfo;
@@ -24,10 +25,12 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
     private static RecyclerViewAdapterPosts.MyClickListener myClickListener;
     private Context mCtx;
     private ArrayList<PostInfo> posts;
+    private int theme;
 
-    public RecyclerViewAdapterPosts(Context context, ArrayList<PostInfo> items) {
+    public RecyclerViewAdapterPosts(Context context, ArrayList<PostInfo> items, int the) {
         mCtx = context;
         posts = items;
+        theme = the;
     }
 
     @Override
@@ -74,7 +77,6 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
                 Intent intent = new Intent(mCtx, ExpandedPostActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("post", posts.get(position));
-                intent.putExtra("openDialog", true);
                 mCtx.startActivity(intent);
             }
         });
@@ -95,6 +97,17 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
                         }
                     }
                 });
+
+        holder.chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mCtx, ChatActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("title", posts.get(position).getPostTitle());
+                intent.putExtra("theme",theme);
+                mCtx.startActivity(intent);
+            }
+        });
     }
 
     public interface MyClickListener {

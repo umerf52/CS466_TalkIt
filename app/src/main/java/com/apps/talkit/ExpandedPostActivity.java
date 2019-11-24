@@ -48,7 +48,7 @@ public class ExpandedPostActivity extends BaseActivity {
         colorSecondary = getResources().getColor(R.color.colorSecondary1);
         Intent i = getIntent();
         post = (PostInfo) i.getSerializableExtra("post");
-        int theme = i.getIntExtra("theme",0);
+        final int theme = i.getIntExtra("theme",0);
         if(theme==1){
             setTheme(R.style.AppThemeTwo);
             colorPrimary = getResources().getColor(R.color.colorPrimary2);
@@ -94,6 +94,17 @@ public class ExpandedPostActivity extends BaseActivity {
         upvoteButton = findViewById(R.id.action_button_1);
         chatButton = findViewById(R.id.action_button_3);
 
+        chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ExpandedPostActivity.this, ChatActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("title", post.getPostTitle());
+                intent.putExtra("theme",theme);
+                ExpandedPostActivity.this.startActivity(intent);
+            }
+        });
+
         title.setText(post.getPostTitle());
         supportingText.setText(post.getPostText());
         numUpvotes.setText(String.valueOf(post.getNumberOfUpvotes()));
@@ -123,7 +134,7 @@ public class ExpandedPostActivity extends BaseActivity {
         RecyclerView recyclerView = findViewById(R.id.comments);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        RecyclerView.Adapter mAdapter = new RecyclerViewAdapterComments(this, post.getComments());
+        RecyclerView.Adapter mAdapter = new RecyclerViewAdapterComments(this, post.getComments(),theme);
         recyclerView.setAdapter(mAdapter);
 
         if (!post.getChatEnabled()) {

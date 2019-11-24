@@ -122,7 +122,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-    
+
     <LinearLayout
         android:id="@+id/layout_chatbox"
         android:layout_width="match_parent"
