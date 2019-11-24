@@ -56,11 +56,16 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
             holder.post.setText("This post contains a trigger warning");
             holder.title.setVisibility(View.GONE);
         } else {
+            holder.post.setTypeface(holder.post.getTypeface(), Typeface.NORMAL);
             holder.post.setText(posts.get(position).getPostText());
             holder.title.setText(posts.get(position).getPostTitle());
+            holder.title.setVisibility(View.VISIBLE);
         }
         if (!posts.get(position).getChatEnabled()) {
             holder.chatButton.setVisibility(View.INVISIBLE);
+        }
+        else{
+            holder.chatButton.setVisibility(View.VISIBLE);
         }
         if (position == posts.size()-1) {
             holder.title.setTypeface(holder.title.getTypeface(), Typeface.ITALIC);
