@@ -45,6 +45,7 @@ public class TherapyDetailV1Activity extends AppCompatActivity {
         colorSecondary = getResources().getColor(R.color.colorSecondary1);
         pictures = getIntent().getIntegerArrayListExtra("images");
         int theme = getIntent().getIntExtra("theme",0);
+        String title = getIntent().getStringExtra("title");
         if(theme==1){
             setTheme(R.style.AppThemeTwo);
             colorPrimary = getResources().getColor(R.color.colorPrimary2);
@@ -77,7 +78,7 @@ public class TherapyDetailV1Activity extends AppCompatActivity {
                 Gravity.CENTER);
         textviewTitle = (TextView) viewActionBar.findViewById(R.id.actionbar_textview);
         textviewTitle.setTextColor(colorSecondary);
-        textviewTitle.setText("Quotes");
+        textviewTitle.setText(title);
         abar.setCustomView(viewActionBar, params);
         abar.setDisplayShowCustomEnabled(true);
         abar.setDisplayShowTitleEnabled(false);

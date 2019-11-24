@@ -97,6 +97,7 @@ class RecyclerViewAdapterTherapy extends RecyclerView.Adapter<RecyclerViewAdapte
                     Intent intent = new Intent(mCtx, TherapyDetailV1Activity.class);
                     intent.putIntegerArrayListExtra("images",myList);
                     intent.putExtra("theme",theme);
+                    intent.putExtra("title","Quotes");
                     mCtx.startActivity(intent);
                 }
                 else if(position==1){
@@ -183,6 +184,36 @@ class RecyclerViewAdapterTherapy extends RecyclerView.Adapter<RecyclerViewAdapte
                     intent.putStringArrayListExtra("tips",tips);
                     intent.putExtra("theme",theme);
                     intent.putExtra("title","Movies");
+                    mCtx.startActivity(intent);
+                }
+                else if(position==6){
+                    ArrayList<Integer> myList = new ArrayList<>();
+                    ArrayList<String> tips = new ArrayList<>();
+                    myList.add(R.drawable.mus1);
+                    myList.add(R.drawable.mus2);
+                    myList.add(R.drawable.mus3);
+                    myList.add(R.drawable.mus4);
+                    tips.add("Marconi Union, “Weightless”");
+                    tips.add("Airstream, “Electra”");
+                    tips.add("DJ Shah, “Mellomaniac (Chillout Mix)”");
+                    tips.add("Enya, “Watermark”");
+                    Intent intent = new Intent(mCtx, TherapyDetailV2Activity.class);
+                    intent.putIntegerArrayListExtra("images",myList);
+                    intent.putStringArrayListExtra("tips",tips);
+                    intent.putExtra("theme",theme);
+                    intent.putExtra("title","Music");
+                    mCtx.startActivity(intent);
+                }
+                else if(position==7){
+                    ArrayList<Integer> myList = new ArrayList<>();
+                    myList.add(R.drawable.meme1);
+                    myList.add(R.drawable.meme2);
+                    myList.add(R.drawable.meme3);
+                    myList.add(R.drawable.meme4);
+                    Intent intent = new Intent(mCtx, TherapyDetailV1Activity.class);
+                    intent.putIntegerArrayListExtra("images",myList);
+                    intent.putExtra("theme",theme);
+                    intent.putExtra("title","Memes");
                     mCtx.startActivity(intent);
                 }
                 else{
