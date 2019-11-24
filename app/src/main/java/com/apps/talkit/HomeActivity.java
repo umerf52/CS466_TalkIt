@@ -208,6 +208,7 @@ public class HomeActivity extends BaseActivity {
                 Bundle bundle = new Bundle();
                 HomeFragment homeFragment = new HomeFragment();
                 homeFragment.setArguments(bundle);
+                homeFragment.putArguments(notifyList);
                 loadFragment(homeFragment);
                 textviewTitle.setText("Home");
                 abar.setCustomView(viewActionBar, params);

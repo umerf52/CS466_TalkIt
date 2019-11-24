@@ -125,7 +125,6 @@ public class HomeFragment extends Fragment {
         ((RecyclerViewAdapterNotifications) mAdapterN).setOnItemClickListener(new RecyclerViewAdapterNotifications.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                String x = notificationsList.get(position);
                 if(position<notifyList.size()){
                     Intent intent = new Intent(getContext(), ExpandedPostActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -140,8 +139,6 @@ public class HomeFragment extends Fragment {
         ((RecyclerViewAdapterChats) mAdapterC).setOnItemClickListener(new RecyclerViewAdapterChats.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-//                String x = chats.get(position);
-//                Toast.makeText(getContext(), x, Toast.LENGTH_LONG).show();
                 String title;
                 if(position==0 || position==1){
                     title = "Anon";
