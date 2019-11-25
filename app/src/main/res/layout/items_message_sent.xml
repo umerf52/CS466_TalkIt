@@ -15,7 +15,7 @@
         android:textAlignment="viewStart"
         android:paddingEnd="17dp"
         android:paddingBottom="15dp"
-        android:minWidth="50dp"
+        android:minWidth="70dp"
         android:paddingStart="7dp"
         android:paddingTop="15dp"
         android:layout_alignParentRight="true"

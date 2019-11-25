@@ -47,7 +47,7 @@ public class StartupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String name = nickname.getText().toString();
                 if (!name.isEmpty()){
-                    UserInfo myUser = new UserInfo(nickname.getText().toString());
+                    UserInfo myUser = new UserInfo(nickname.getText().toString().trim());
                     Intent myIntent = new Intent(StartupActivity.this, HomeActivity.class);
                     myIntent.putExtra("theme",0);
                     myIntent.putExtra("name", myUser);
