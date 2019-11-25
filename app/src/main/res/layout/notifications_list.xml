@@ -8,8 +8,11 @@
         android:layout_width="match_parent"
         android:id="@+id/cardNotifications"
         android:layout_height="wrap_content"
+        android:outlineSpotShadowColor="@color/Black"
+        android:outlineAmbientShadowColor="@color/Black"
         app:cardCornerRadius="31dp"
-        app:cardElevation="3dp"
+
+        app:cardElevation="6dp"
         app:cardPreventCornerOverlap="false"
         app:cardBackgroundColor="?attr/my_background_color"
         android:layout_margin="3dp">
@@ -27,7 +30,8 @@
                 android:layout_centerInParent="true"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:textSize="15sp"
+                android:text="hello"
+                android:textSize="20sp"
                 android:layout_marginLeft="10dp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
         </RelativeLayout>
