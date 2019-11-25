@@ -12,13 +12,11 @@
         android:background="@drawable/outgoing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxWidth="240dp"
         android:textAlignment="viewStart"
         android:paddingEnd="17dp"
         android:paddingBottom="15dp"
         android:paddingStart="7dp"
         android:paddingTop="15dp"
-
         android:layout_alignParentRight="true"
         android:textColor="@color/Black"/>
 

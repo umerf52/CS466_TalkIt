@@ -10,7 +10,6 @@
         android:background="@drawable/incoming"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxWidth="240dp"
         android:textAlignment="viewStart"
         android:padding="15dp"
         android:layout_alignParentLeft="true"
