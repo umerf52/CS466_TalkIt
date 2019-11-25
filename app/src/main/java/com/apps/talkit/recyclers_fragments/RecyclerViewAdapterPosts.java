@@ -73,6 +73,7 @@ class RecyclerViewAdapterPosts extends RecyclerView.Adapter<RecyclerViewAdapterP
             holder.cardView.setClickable(false);
         }else{
             holder.title.setTypeface(holder.title.getTypeface(), Typeface.NORMAL);
+            holder.cardView.setClickable(true);
         }
         holder.numUpvotes.setText(String.valueOf(posts.get(position).getNumberOfUpvotes()));
         if(posts.get(position).getUpvoted()){
