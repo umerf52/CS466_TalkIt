@@ -8,16 +8,17 @@
 
     <TextView
         android:id="@+id/text_message_body"
-        android:text="hi man, how are you?"
+        android:text="Hi, How are you doing?"
         android:background="@drawable/outgoing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
         android:textAlignment="viewStart"
         android:paddingEnd="17dp"
-        android:paddingBottom="15dp"
+        android:paddingBottom="10dp"
         android:minWidth="70dp"
         android:paddingStart="7dp"
-        android:paddingTop="15dp"
+        android:paddingTop="5dp"
         android:layout_alignParentRight="true"
         android:textColor="@color/Black"/>
 
