@@ -30,10 +30,11 @@
             <TextView
                 android:id="@+id/title_text"
                 android:layout_below="@id/postContent2"
-                android:layout_marginTop="5dp"
-                android:text="Title"
+                android:layout_marginTop="15dp"
+                android:text="Title:"
+                android:layout_marginRight="3dp"
                 android:textStyle="bold"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="10dp"
                 android:textSize="20sp"
                 android:textColor="@color/Black"
                 android:layout_width="wrap_content"
@@ -41,9 +42,13 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/titleLayout"
-                android:layout_below="@id/title_text"
+                android:layout_below="@id/postContent2"
+                android:layout_toRightOf="@id/title_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:hint="@string/empty"
                 android:inputType="text"
                 android:orientation="vertical"
@@ -55,76 +60,89 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/title"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:layout_height="40dp"
                     android:textAlignment="gravity"
                     android:inputType="text"
-                    android:background="@drawable/sign"/>
+                    android:background="@drawable/sign2"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tag_text"
-                android:layout_below="@id/titleLayout"
-                android:layout_marginTop="5dp"
-                android:text="Tags"
-                android:textStyle="bold"
-                android:layout_marginLeft="3dp"
-                android:textSize="20sp"
-                android:textColor="@color/Black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tagLayout"
-                android:layout_below="@id/tag_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/empty"
-                android:inputType="text"
-                android:orientation="vertical"
-                android:textColor="@color/Black"
-                app:errorEnabled="false"
-                app:hintEnabled="false"
-                app:hintAnimationEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tagstext"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textAlignment="gravity"
-                    android:inputType="text"
-                    android:textAllCaps="true"
-                    android:background="@drawable/sign"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/tagsubmit"
-                android:layout_width="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tagLayout"
-                android:textColor="@color/White"
-                android:background="@drawable/button"
-                android:layout_marginTop="3dp"
-                android:onClick="onAddTag"
-                android:text="@string/add" />
 
             <LinearLayout
-                android:id="@+id/tagscontainer"
-                android:layout_below="@id/tagLayout"
-                android:layout_width="50dp"
-                android:layout_marginLeft="3dp"
-                android:layout_alignParentLeft="true"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:id="@+id/li"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/titleLayout">
+
+                <TextView
+                    android:id="@+id/tag_text"
+                    android:text="Tags:"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/Black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tagLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="@string/empty"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:orientation="vertical"
+                    android:textColor="@color/Black"
+                    android:layout_marginRight="10dp"
+                    app:errorEnabled="false"
+                    app:hintEnabled="false"
+                    app:hintAnimationEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tagstext"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textAlignment="gravity"
+                        android:paddingLeft="5dp"
+                        android:inputType="text"
+                        android:textAllCaps="true"
+                        android:background="@drawable/sign2"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/tagsubmit"
+                    android:layout_width="40dp"
+                    android:layout_gravity="center"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/White"
+                    android:background="@drawable/circle3"
+                    android:onClick="onAddTag"
+                    android:textSize="25sp"
+                    android:text="+" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/tagscontainer"
+                android:layout_below="@id/li"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"/>
 
             <TextView
                 android:id="@+id/triggerwarning"
-                android:layout_below="@id/tagsubmit"
+                android:layout_below="@id/tagscontainer"
                 android:layout_marginTop="25dp"
                 android:text="@string/trigger"
                 android:textStyle="bold"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="10dp"
                 android:textSize="20sp"
                 android:textColor="@color/Black"
                 android:layout_width="wrap_content"
@@ -132,21 +150,22 @@
 
             <CheckBox
                 android:id="@+id/triggerCheck"
-                android:layout_below="@id/tagsubmit"
+                android:layout_below="@id/tagscontainer"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="3dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />
 
             <TextView
                 android:id="@+id/triggerwarning2"
-                android:layout_below="@id/triggerwarning"
-                android:layout_marginTop="25dp"
+                android:layout_below="@id/tagscontainer"
+                android:layout_marginTop="80dp"
                 android:text="@string/enablechat"
                 android:textStyle="bold"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="10dp"
                 android:textSize="20sp"
                 android:textColor="@color/Black"
                 android:layout_width="wrap_content"
@@ -154,10 +173,10 @@
 
             <CheckBox
                 android:id="@+id/chatCheck"
-                android:layout_below="@id/triggerCheck"
+                android:layout_below="@id/tagscontainer"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="3dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -165,14 +184,15 @@
 
             <Button
                 android:id="@+id/share_button"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="150dp"
                 android:layout_below="@id/triggerwarning2"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
                 android:onClick="onShareButton"
                 android:textColor="@color/White"
-                android:background="@drawable/button"
+                android:background="@drawable/buttonrou"
                 android:text="@string/share"/>
 
         </RelativeLayout>
